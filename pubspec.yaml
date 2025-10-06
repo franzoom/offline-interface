@@ -35,6 +35,14 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
+#  offline_liturgy:
+#    git: https://github.com/franzoom/offline-liturgy.git
+
+# Uncomment to use a local version of a package:
+# dependency_overrides:
+  offline_liturgy:
+    path: ../offline-liturgy/  
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -87,3 +95,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+

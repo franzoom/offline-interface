@@ -5,11 +5,15 @@ import 'offices.dart';
 class HomePage extends StatefulWidget {
   final ThemeMode themeMode;
   final VoidCallback onToggleTheme;
+  final bool useSerifFont;
+  final VoidCallback onToggleFont;
 
   const HomePage({
     Key? key,
     required this.themeMode,
     required this.onToggleTheme,
+    required this.useSerifFont,
+    required this.onToggleFont,
   }) : super(key: key);
 
   @override
@@ -123,7 +127,6 @@ class _HomePageState extends State<HomePage> {
         title: Text(
           'Liturgie des Heures',
           style: TextStyle(
-            fontFamily: 'serif',
             fontSize: 20,
             fontWeight: FontWeight.bold,
             color: isDark ? const Color(0xFFFBBF24) : const Color(0xFF78350F),
@@ -131,6 +134,17 @@ class _HomePageState extends State<HomePage> {
         ),
         backgroundColor: isDark ? const Color(0xFF1F2937) : Colors.white,
         actions: [
+          // Icône changement de police
+          IconButton(
+            icon: Icon(
+              widget.useSerifFont ? Icons.font_download : Icons.text_fields,
+              color: isDark ? const Color(0xFFFBBF24) : const Color(0xFF78350F),
+            ),
+            tooltip: widget.useSerifFont
+                ? 'Police sans serif'
+                : 'Police avec serif',
+            onPressed: widget.onToggleFont,
+          ),
           // Icône mode nuit/jour
           IconButton(
             icon: Icon(
