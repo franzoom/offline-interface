@@ -1,10 +1,10 @@
 {
   "roots": [
-    "votre_app"
+    "offline_breviary"
   ],
   "packages": [
     {
-      "name": "votre_app",
+      "name": "offline_breviary",
       "version": "1.0.0+1",
       "dependencies": [
         "flutter",
@@ -43,7 +43,7 @@
     },
     {
       "name": "offline_liturgy",
-      "version": "1.0.0",
+      "version": "2.1.0",
       "dependencies": [
         "yaml"
       ]

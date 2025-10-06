@@ -272,7 +272,7 @@
       "languageVersion": "3.4"
     },
     {
-      "name": "votre_app",
+      "name": "offline_breviary",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.0"

@@ -1,5 +1,5 @@
-name: votre_app
-description: A new Flutter project.
+name: offline_breviary
+description: A breviary with all the datas offline.
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -20,10 +20,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  
-  assets:
-    - assets/locations.json
-  
+
   fonts:
     - family: EBGaramond
       fonts:

@@ -222,7 +222,6 @@
 /Users/franzoom/development/offline-interface/assets/fonts/Inter-Bold.ttf
 /Users/franzoom/development/offline-interface/assets/fonts/Inter-Regular.ttf
 /Users/franzoom/development/offline-interface/assets/fonts/Inter-SemiBold.ttf
-/Users/franzoom/development/offline-interface/assets/locations.json
 /Users/franzoom/development/offline-interface/lib/main.dart
 /Users/franzoom/development/offline-interface/lib/models/location.dart
 /Users/franzoom/development/offline-interface/lib/pages/complines.dart
@@ -231,7 +230,9 @@
 /Users/franzoom/development/offline-interface/lib/pages/offices.dart
 /Users/franzoom/development/offline-interface/lib/pages/settings.dart
 /Users/franzoom/development/offline-interface/lib/styles.dart
+/Users/franzoom/development/offline-interface/lib/themes.dart
 /Users/franzoom/development/offline-interface/pubspec.yaml
+/Users/franzoom/development/offline-liturgy/assets/locations.json
 /Users/franzoom/development/offline-liturgy/lib/assets/libraries/fixed_texts_library.dart
 /Users/franzoom/development/offline-liturgy/lib/assets/libraries/psalms_library.dart
 /Users/franzoom/development/offline-liturgy/lib/classes/compline_class.dart

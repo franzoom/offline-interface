@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import '../styles.dart';
-import 'package:offline_liturgy/assets/libraries/psalms_library.dart';
-import 'package:offline_liturgy/assets/libraries/fixed_texts_library.dart';
-import 'package:offline_liturgy/classes/compline_class.dart';
+import '../services/calendar_service.dart';
+import 'package:offline_liturgy/offline_liturgy.dart';
 
 class Complines extends StatefulWidget {
   final String title;
@@ -15,13 +14,50 @@ class Complines extends StatefulWidget {
 class _CompliesState extends State<Complines>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  bool hasPsalm2 = true; // À déterminer dynamiquement selon vos données
+  bool hasPsalm2 = true;
+  Map<String, Compline>? _complineData;
 
   @override
   void initState() {
     super.initState();
-    // Nombre d'onglets : 6 de base + 1 si Psaume 2 existe
     _tabController = TabController(length: hasPsalm2 ? 7 : 6, vsync: this);
+    _loadComplinesData();
+  }
+
+  void _loadComplinesData() {
+    // Accéder au Calendar global via CalendarService
+    final calendar = CalendarService().offlineCalendar;
+
+    if (calendar != null) {
+      print('Calendar disponible pour les Complies');
+
+      // Obtenir la date actuelle
+      final now = DateTime.now();
+      final dateString =
+          '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
+
+      // TODO: Récupérer la région depuis les préférences ou localisation
+      final region = 'france'; // À remplacer par la vraie valeur
+
+      // Générer les données des Complies
+      _complineData =
+          getNewOfflineLiturgy('compline', dateString, region, calendar);
+
+      print('Données des Complies chargées : ${_complineData?.keys}');
+    } else {
+      print('Calendar non disponible');
+    }
+  }
+
+  Map<String, Compline> getNewOfflineLiturgy(
+      String type, String date, String region, Calendar calendar) {
+    print("getNewOfflineCompline appelé pour $type, $date, $region");
+    DateTime dateTime = DateTime.parse(date);
+    Map<String, ComplineDefinition> complineDefinitionResolved =
+        complineDefinitionResolution(calendar, dateTime, region);
+    Map<String, Compline> complineTextCompiled =
+        complineTextCompilation(complineDefinitionResolved);
+    return complineTextCompiled;
   }
 
   @override
@@ -42,15 +78,12 @@ class _CompliesState extends State<Complines>
           child: TabBar(
             controller: _tabController,
             isScrollable: true,
-            indicatorColor: isDark
-                ? const Color(0xFFFBBF24)
-                : const Color(0xFFD97706),
-            labelColor: isDark
-                ? const Color(0xFFFBBF24)
-                : const Color(0xFF78350F),
-            unselectedLabelColor: isDark
-                ? const Color(0xFF9CA3AF)
-                : const Color(0xFF6B7280),
+            indicatorColor:
+                isDark ? const Color(0xFFFBBF24) : const Color(0xFFD97706),
+            labelColor:
+                isDark ? const Color(0xFFFBBF24) : const Color(0xFF78350F),
+            unselectedLabelColor:
+                isDark ? const Color(0xFF9CA3AF) : const Color(0xFF6B7280),
             tabs: [
               const Tab(text: 'Introduction'),
               const Tab(text: 'Hymne'),
@@ -92,7 +125,7 @@ class _CompliesState extends State<Complines>
                 children: [
                   const SousTitreText('Hymne'),
                   const SizedBox(height: 12),
-                  const CorpsText('[Le texte de l\'hymne sera affiché ici]'),
+                  CorpsText(_getHymnText()),
                 ],
               ),
               // Psaume 1
@@ -171,7 +204,17 @@ class _CompliesState extends State<Complines>
     );
   }
 
-  // Widget helper pour construire le contenu de chaque onglet avec padding et scroll
+  // Méthode helper pour récupérer le texte de l'hymne depuis _complineData
+  String _getHymnText() {
+    if (_complineData != null && _complineData!.containsKey('hymn')) {
+      // Accéder aux données de l'hymne
+      // Ajustez selon la structure réelle de votre objet Compline
+      return _complineData!['hymn']?.toString() ??
+          '[Hymne en cours de chargement]';
+    }
+    return '[Le texte de l\'hymne sera affiché ici]';
+  }
+
   Widget _buildTabContent(
     BuildContext context, {
     required List<Widget> children,

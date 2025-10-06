@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'pages/homepage.dart';
-import 'themes.dart'; // Import du nouveau fichier
+import 'themes.dart';
+import 'services/calendar_service.dart'; // Ajoutez cet import
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialiser le Calendar global
+  await CalendarService().init();
+
   runApp(const BreviaireApp());
 }
 
@@ -72,7 +77,6 @@ class _BreviaireAppState extends State<BreviaireApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Liturgie des Heures',
-      // Utilisation des thèmes du fichier themes.dart
       theme: AppThemes.lightTheme(
         fontFamily: bodyFontFamily,
         useSerifFont: _useSerifFont,

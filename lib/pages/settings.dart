@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/location.dart';
+import '../services/calendar_service.dart';
+import 'package:offline_liturgy/offline_liturgy.dart';
 
 class LocationItem {
   final String displayName;
@@ -50,7 +52,7 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   LocationHierarchy? _locationHierarchy;
-  List<LocationItem> _allLocations = [];
+  final List<LocationItem> _allLocations = [];
   String? _selectedLocationId;
   bool _isLoading = true;
 
@@ -71,7 +73,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Future<void> _loadLocations() async {
     try {
       final String jsonString = await rootBundle.loadString(
-        'assets/locations.json',
+        'packages/offline_liturgy/assets/locations.json',
       );
       final jsonData = json.decode(jsonString);
       _locationHierarchy = LocationHierarchy.fromJson(jsonData);
@@ -89,26 +91,23 @@ class _SettingsPageState extends State<SettingsPage> {
     if (_locationHierarchy == null) return;
 
     for (var continent in _locationHierarchy!.continents) {
-      // Ajouter le continent
       _allLocations.add(LocationItem(
         displayName: continent.nameFr,
         continentId: continent.id,
         level: 0,
       ));
 
-      // Ajouter les pays du continent
       for (var country in continent.countries) {
         _allLocations.add(LocationItem(
-          displayName: '  ${country.nameFr}', // Indentation avec espaces
+          displayName: '  ${country.nameFr}',
           continentId: continent.id,
           countryId: country.id,
           level: 1,
         ));
 
-        // Ajouter les diocèses du pays
         for (var diocese in country.dioceses) {
           _allLocations.add(LocationItem(
-            displayName: '    ${diocese.nameFr}', // Double indentation
+            displayName: '    ${diocese.nameFr}',
             continentId: continent.id,
             countryId: country.id,
             dioceseId: diocese.id,
@@ -141,8 +140,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
     );
 
-    return location.displayName
-        .trim(); // Enlever les espaces d'indentation pour l'affichage
+    return location.displayName.trim();
   }
 
   @override
@@ -181,7 +179,6 @@ class _SettingsPageState extends State<SettingsPage> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          // Section Apparence
           Text(
             'Apparence',
             style: TextStyle(
@@ -229,7 +226,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   widget.onToggleTheme();
                   _saveThemePreference(value);
                 },
-                activeColor: const Color(0xFFFBBF24),
+                activeTrackColor: const Color(0xFFFBBF24),
               ),
             ),
           ),
@@ -270,7 +267,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   widget.onToggleFont();
                   _saveFontPreference(value);
                 },
-                activeColor: const Color(0xFFFBBF24),
+                activeTrackColor: const Color(0xFFFBBF24),
               ),
             ),
           ),
@@ -365,7 +362,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
           const SizedBox(height: 32),
 
-          // Section Localisation
           Text(
             'Localisation',
             style: TextStyle(
@@ -404,8 +400,6 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                   ),
                   const SizedBox(height: 16),
-
-                  // Liste déroulante unique avec tous les emplacements
                   DropdownButtonFormField<String>(
                     key: ValueKey(_selectedLocationId),
                     initialValue: _selectedLocationId,
@@ -453,14 +447,22 @@ class _SettingsPageState extends State<SettingsPage> {
                         });
                         await _saveLocation(value);
 
-                        if (mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Localisation mise à jour'),
-                              duration: Duration(seconds: 2),
-                            ),
-                          );
-                        }
+                        // calendar update with the new location
+                        final Calendar calendar =
+                            Calendar(); //calendar initialization for this year
+                        calendar.calendarData.addAll(
+                            calendarFill(calendar, DateTime.now().year, value)
+                                .calendarData);
+                        CalendarService().updateCalendar(calendar);
+
+                        if (!mounted) return;
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Localisation mise à jour'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
                       }
                     },
                   ),
@@ -471,7 +473,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
           const SizedBox(height: 32),
 
-          // Section À propos
           Text(
             'À propos',
             style: TextStyle(

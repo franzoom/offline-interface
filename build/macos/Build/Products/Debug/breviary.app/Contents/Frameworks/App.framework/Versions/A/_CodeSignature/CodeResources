@@ -10,11 +10,11 @@
 		</data>
 		<key>Resources/flutter_assets/AssetManifest.bin</key>
 		<data>
-		kCzA+ln92wY2EoQ3v9IeMSsR8KU=
+		18Vc+hNuSCC9pkC+fbG697MCrWI=
 		</data>
 		<key>Resources/flutter_assets/AssetManifest.json</key>
 		<data>
-		lSohxblVsXBjcujFjDcw3lO1ILc=
+		cU0HFND2NMzKyA1Y3QAiPJrL4eI=
 		</data>
 		<key>Resources/flutter_assets/FontManifest.json</key>
 		<data>
@@ -56,10 +56,6 @@
 		<data>
 		8+RKvWZh1bhh5m2yL095psRmzQA=
 		</data>
-		<key>Resources/flutter_assets/assets/locations.json</key>
-		<data>
-		D+SDqHe3lyWzIUsUoLcBaS7yuH0=
-		</data>
 		<key>Resources/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
 		/CUoTuPQqqdexfyOT9lpJhV+2MQ=
@@ -70,7 +66,11 @@
 		</data>
 		<key>Resources/flutter_assets/kernel_blob.bin</key>
 		<data>
-		OmN4y6PPbUm1M77VI3I0RvJEtzk=
+		sFu9IVG0lH+YX/ue4cSJIiR6nfo=
+		</data>
+		<key>Resources/flutter_assets/packages/offline_liturgy/assets/locations.json</key>
+		<data>
+		D+SDqHe3lyWzIUsUoLcBaS7yuH0=
 		</data>
 		<key>Resources/flutter_assets/shaders/ink_sparkle.frag</key>
 		<data>
@@ -94,14 +94,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			02nbvg8itOMkNSZ5VjXcnXN7Y7rjqwSKFwZPJhTE34w=
+			Mq63kpaarrdnfRwEwhdI7BJb1Rp/EAEgqBai/xMvGlk=
 			</data>
 		</dict>
 		<key>Resources/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3TnhSme03MEq+ojf+YInyzfjr5sSpLXYScJP84s5mT0=
+			W0q9RmZ349MMqri3M+XI3mxM+lWfEdMdMjOxl0HDPZ0=
 			</data>
 		</dict>
 		<key>Resources/flutter_assets/FontManifest.json</key>
@@ -174,13 +174,6 @@
 			qLJ24luxPfo5z6zjXMkq/5p9XxuWFD8N+MZjUcz+0qQ=
 			</data>
 		</dict>
-		<key>Resources/flutter_assets/assets/locations.json</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			rI8vYRUNLB4Dmcbr7VBBA/v0OzIkF0O4X0vC8R8mnW8=
-			</data>
-		</dict>
 		<key>Resources/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<dict>
 			<key>hash2</key>
@@ -199,7 +192,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			AriPH/372iXHk/wuAi/I7qs/47bjm5gkjoqlS1ZF9bI=
+			edF7VzpHaogWKrE8A3L1Hnn62gqp2OS3W4HfqdaC0Ow=
+			</data>
+		</dict>
+		<key>Resources/flutter_assets/packages/offline_liturgy/assets/locations.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			rI8vYRUNLB4Dmcbr7VBBA/v0OzIkF0O4X0vC8R8mnW8=
 			</data>
 		</dict>
 		<key>Resources/flutter_assets/shaders/ink_sparkle.frag</key>

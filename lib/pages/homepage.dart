@@ -174,7 +174,7 @@ class _HomePageState extends State<HomePage> {
             decoration: BoxDecoration(
               color: isDark
                   ? const Color(0xFF374151)
-                  : const Color(0xFFFED7AA).withOpacity(0.3),
+                  : const Color(0xFFFED7AA).withValues(alpha: 0.3),
               border: Border(
                 bottom: BorderSide(
                   color: isDark

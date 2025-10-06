@@ -150,7 +150,7 @@ packages:
       path: "../offline-liturgy"
       relative: true
     source: path
-    version: "1.0.0"
+    version: "2.1.0"
   path:
     dependency: transitive
     description:
