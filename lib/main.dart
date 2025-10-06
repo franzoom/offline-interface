@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'pages/homepage.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const BreviaireApp());
 }
 
@@ -14,7 +16,24 @@ class BreviaireApp extends StatefulWidget {
 
 class _BreviaireAppState extends State<BreviaireApp> {
   ThemeMode _themeMode = ThemeMode.light;
-  bool _useSerifFont = true; // true = Georgia (serif), false = sans-serif
+  bool _useSerifFont = true;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadPreferences();
+  }
+
+  Future<void> _loadPreferences() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      final isDark = prefs.getBool('is_dark_mode') ?? false;
+      _themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
+      _useSerifFont = prefs.getBool('use_serif_font') ?? true;
+      _isLoading = false;
+    });
+  }
 
   void toggleTheme() {
     setState(() {
@@ -32,6 +51,12 @@ class _BreviaireAppState extends State<BreviaireApp> {
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const MaterialApp(
+        home: Scaffold(body: Center(child: CircularProgressIndicator())),
+      );
+    }
+
     final String? fontFamily = _useSerifFont ? 'Georgia' : null;
 
     return MaterialApp(

@@ -200,475 +200,487 @@
     "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/macosx\/prebuilt-modules\/26.0\/os.swiftmodule\/arm64e-apple-macos.swiftmodule"
   },
   {
+    "isFramework" : true,
+    "moduleName" : "shared_preferences_foundation",
+    "modulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/Build\/Products\/Debug\/shared_preferences_foundation\/shared_preferences_foundation.framework\/Modules\/shared_preferences_foundation.swiftmodule\/arm64-apple-macos.swiftmodule"
+  },
+  {
     "isFramework" : false,
     "moduleName" : "simd",
     "modulePath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/swift\/macosx\/prebuilt-modules\/26.0\/simd.swiftmodule\/arm64e-apple-macos.swiftmodule"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/Accessibility.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/Accessibility-BMDGQ1LQB9G8O0X6O3ZH8QAOH.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/Accessibility-ESWN926QF11CD8G6XJ75X3V0.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "Accessibility"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/AppKit.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/AppKit-D0VWKA5YELK4BDHX3KVELPVIT.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/AppKit-41ZRX2O5FAB9SHUCOVANPRQU5.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "AppKit"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/ApplicationServices.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/ApplicationServices-3C2R5EXFK4L3J7142HF5AN9LI.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/ApplicationServices-CPYXEZL3NWMSKALL4WL4VAEOD.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "ApplicationServices"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/CFNetwork.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CFNetwork-4S2SDM3I88MHNS2M2144IPC4O.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CFNetwork-C3ISYSKL9DMEC52YHOVNUB14W.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CFNetwork"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/include\/cups.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CUPS-3UCSK64OXACP8KP4I96HHECZE.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CUPS-ESPADZ21DUH6OSOIEPDAB4EE1.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CUPS"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/Cocoa.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/Cocoa-9NJFWNKNAZJNWTFVWGU1ZGHAI.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/Cocoa-775WRTFHAGV9SHXK5F4SI3P9R.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "Cocoa"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/ColorSync.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/ColorSync-9GSX9PVZ714PMTJ9W506AI4HG.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/ColorSync-BG193FAP9M1TQQ9G3M409F11H.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "ColorSync"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/CoreAudio.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreAudio-L9YU44QZHDYCKRM2BAY8ZMRG.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreAudio-91HPI6XSAH7Q6NMFG5TOO9K9Z.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreAudio"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/CoreAudioTypes.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreAudioTypes-2E5E64JP4ZP9QPAFSOQY8OEOY.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreAudioTypes-757EL6T8OBAGUO390FWK87OJ5.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreAudioTypes"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/CoreData.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreData-5B6MVEIFLABUYXJKI6WY091R.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreData-9Q8Y11QSC2MOPJ44JE5Z2V90W.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreData"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/CoreFoundation.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreFoundation-5ISBHDOIFU3K6OSA976FX30XB.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreFoundation-8P5QENENM3JDL1ZAUGWEOMCC5.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreFoundation"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/CoreGraphics.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreGraphics-1SLMLX47H3OA8MWGKJXF4IKJC.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreGraphics-339MZDJYSDKZ9ZZEKSO4T0HMK.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreGraphics"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/CoreImage.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreImage-CZ08VPDEHME2XO68ZXTJ43NN6.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreImage-2A7DTNIRCOB42L43D83BEKE7X.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreImage"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/CoreMedia.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreMedia-49H7Z21G9OAIAWTM1SLKQRY5M.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreMedia-5JBLN3F98CCC47FLP8G3LWBFO.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreMedia"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/CoreServices.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreServices-EYAZ1Y1VOJY1B56SY3DPT2I1B.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreServices-9FSDUZWC1EO1B20L742B991JR.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreServices"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/CoreText.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreText-8O64SOIUS3DPBK5CY1GLB2W7F.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreText-1KANZWXRQXHM6Z01GPLNQ1OQA.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreText"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/CoreTransferable.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreTransferable-2OZDSF0E5EKEKOS1CIY18P4SP.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreTransferable-CT6KD9J4BJUH0SHL9BNZ8KFZ7.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreTransferable"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/CoreVideo.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreVideo-5EIVW5SRG5LQU21Y72SJW23WQ.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/CoreVideo-57VDZUE9LKU541OE1A8WJNGB2.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "CoreVideo"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/include\/Darwin.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/Darwin-EEFYL2V9CV9YOK10BJ8WN0Q4L.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/Darwin-12FJPN7XNX27DNFN1B9NQMYHF.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "Darwin"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/DataDetection.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/DataDetection-8M9HJCB71QN4LIUH8XN99OK5H.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/DataDetection-5TFVE66N7FW6L942M6SMV44N8.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "DataDetection"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/DeveloperToolsSupport.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/DeveloperToolsSupport-E6D4F9ZLT2VRSKRGO2MQNVHBY.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/DeveloperToolsSupport-6X1XY771GJVUOL098QXEKE93P.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "DeveloperToolsSupport"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/DiskArbitration.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/DiskArbitration-ER2X9K40WUATB08ZLQRR9IMJA.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/DiskArbitration-3RS1P4SI5KRUH7NKAPPLTEPGB.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "DiskArbitration"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/include\/dispatch.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/Dispatch-9B2VKX4KNHQ3TTY084FHNF7RO.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/Dispatch-4XJDGH75H9AX4J6DQ86Z5AGG4.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "Dispatch"
   },
   {
     "clangModuleMapPath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/Build\/Products\/Debug\/FlutterMacOS.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/Build\/Intermediates.noindex\/SwiftExplicitPrecompiledModules\/FlutterMacOS-4H41SD7KLK6D948KO5Y8LK46C.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/Build\/Intermediates.noindex\/SwiftExplicitPrecompiledModules\/FlutterMacOS-3PETUI7BY8X8MSF71B71Z9Z8B.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "FlutterMacOS"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/Foundation.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/Foundation-BNIJBAHE2Z9MTNCL640CM67AQ.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/Foundation-7HHO8XUTIY2MFFSVG3OZ180G4.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "Foundation"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/IOKit.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/IOKit-4F3OYEIRJ5Z4FMC6R0BX8TZLR.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/IOKit-E1ROYXTV26A4FPPHJ7O2NSXKN.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "IOKit"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/IOSurface.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/IOSurface-5L26F898BVJC1O7RM32UHNDB3.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/IOSurface-C23SMAG6H0L2LMADTTNCD3DB7.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "IOSurface"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/ImageIO.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/ImageIO-6EDLE2L7Y8EPQ6TLVF553M593.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/ImageIO-C7E1770U2JCL36QLZAKZ9H13R.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "ImageIO"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/include\/DarwinBasic.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/MachO-56OEPAELQB9CONRXWNE8F8X30.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/MachO-6412ZIYHAWQKIHB6JKIKR0IUR.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "MachO"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/Metal.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/Metal-5R72AU9WRE2IRR7FCNBR04DUW.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/Metal-10BV4WGJVM0YTEYUDEFQM86X1.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "Metal"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/OSLog.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/OSLog-ALOQKI9PX0OAMS88ZJRR9CEVC.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/OSLog-AEQQ1YKVD4NZ1E5T1EZO7XWLT.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "OSLog"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/include\/ObjectiveC.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/ObjectiveC-2GIYG3B64E219HNEIC2F1YVN1.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/ObjectiveC-4YXGBF8851XT3G6OUA9WQ93UK.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "ObjectiveC"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/OpenGL.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/OpenGL-CZEALZ2Z3R96FEUY6RENDVSFN.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/OpenGL-8NCRWZLYCINBX21O7LUDJZXKI.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "OpenGL"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/QuartzCore.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/QuartzCore-5H4Z4O60KTJQRYWWR8ANFHP14.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/QuartzCore-1O7LQYJTO3V4TZCCWGGYWRWSG.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "QuartzCore"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/Security.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/Security-EW9ZANHCS9FET6ZQGKHCFKQJA.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/Security-CD77NXRZK1FN413QZR50IH2Y6.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "Security"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/include\/Spatial\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/Spatial-1BLV5YLR8QPKSXUIZ7N4ZC0NA.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/Spatial-26LR33MTJS9A7G52EMDNJPWFJ.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "Spatial"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/lib\/swift\/shims\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/SwiftShims-2A4LF0Q6SAOS5TBWF1EKKIF3A.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/SwiftShims-7X5YHQJ3LWK3P1FPFC07AWWSM.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "SwiftShims"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/SwiftUI.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/SwiftUI-30Q3IDGKKH1MRJX6TAHLHM345.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/SwiftUI-9GE6AN83J9UP8WVYSSE5JJD6L.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "SwiftUI"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/SwiftUICore.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/SwiftUICore-DATF6GSQXHD2CZGOQCNHAUNEX.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/SwiftUICore-20OZYO51PQIGSE14NKZCNX1QK.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "SwiftUICore"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/Symbols.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/Symbols-CSRDN70X8PJIDTUPIYFFXL3MN.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/Symbols-BL0U53USTQB4HNU5FXDH7AADR.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "Symbols"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/System\/Library\/Frameworks\/UniformTypeIdentifiers.framework\/Modules\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/UniformTypeIdentifiers-1SUSA5YUAKBERXZYKPB3DB3W1.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/UniformTypeIdentifiers-64RGWXPZJONDOODU8HEOEY8X8.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "UniformTypeIdentifiers"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/include\/xpc.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/XPC-608SX4PAOCTTB0HFVVGJT9EDC.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/XPC-3I6OKM3RCBKUST8QP7GEPLC3U.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "XPC"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/include\/DarwinFoundation1.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_AvailabilityInternal-CB3RROEI81H48NA5T8XKY7QHW.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_AvailabilityInternal-2FTEUY1KPPY5R8UVXYU3SB50B.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_AvailabilityInternal"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_float-AFP3IVQ9TCBGTKTT6QQSQI23K.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_float-1PN83ZTNZ4VT2A7BYY04B9QA6.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_float"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_intrinsics-9NNUJV7U7ZM9C43TNFNW8V4UL.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_intrinsics-C7GAGIP79SGVPOC2E9C7RJ2WU.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_intrinsics"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_inttypes-9FILXSHZR00EQVKGGUBI3Q8UF.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_inttypes-2DQ78HYUXD1N73JI1OC7L88N5.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_inttypes"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_limits-1D9RZ97N9OICK5ESOXVOH8A13.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_limits-603VBWDJ3QO9TWL6USZA15PKH.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_limits"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_stdarg-A6BORU56P8QSITV26GABRHKX5.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_stdarg-D1992YN1QFQMN6ZAWYGKRGAM0.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_stdarg"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_stdatomic-BGDQS9XMEWTS0TLN0QGSJQLKK.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_stdatomic-8958NX8WQ0PS3640FT2QBPZ3D.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_stdatomic"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_stdbool-6V82Q9N9LSV2UMCJEUVU8Z0RP.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_stdbool-6BAIHADK84I9API62M3L9XDV2.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_stdbool"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_stddef-AI635O4DYKLWD7PT0LM4283YX.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_stddef-2UH2AD716YKW1ND6XYBHIB6FF.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_stddef"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_stdint-8N6M3ZGWZHPV19DOPS4IMVL1.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_stdint-8VU4OW4BTIA6WEASGZY2U21DQ.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_stdint"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_tgmath-A54OH9HTR4F16RSWDOQD9LXGO.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_Builtin_tgmath-6Z4CWWUCGYK0W20A91UKV7LJY.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_Builtin_tgmath"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/include\/DarwinFoundation1.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_DarwinFoundation1-4T8IDRF0QQWSTDYECRDG1KSQF.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_DarwinFoundation1-3K3BNQJZNTSZMEE7U3LAL5XSV.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_DarwinFoundation1"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/include\/DarwinFoundation2.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_DarwinFoundation2-DKIKDBEE22G97VQYZ8KAE0U2W.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_DarwinFoundation2-9MBGEYD05XJ650UMR0WTJWKIG.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_DarwinFoundation2"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/include\/DarwinFoundation3.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_DarwinFoundation3-4ZYMW66215ZNFKJYDC662GPZA.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_DarwinFoundation3-1LALXZHP0E6UCJAT5Y9KMMN5C.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_DarwinFoundation3"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/lib\/swift\/shims\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_SwiftConcurrencyShims-3RYNZIUG3S9WO7JUX9Z507QBN.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/_SwiftConcurrencyShims-2PDPDNNDGAL6DSYCC404ZGFTW.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "_SwiftConcurrencyShims"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/include\/launch.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/launch-BRJ84ZLNA44ECCORZZ52YIL5L.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/launch-9SRTF7SCII46UVQFDIVR10OYP.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "launch"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/include\/libDER\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/libDER-BNG8O3I8GGAFOZFDZQ38LX0MR.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/libDER-1OQC00P61CQJ4HMTRQCVNCT5V.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "libDER"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/include\/libkern.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/libkern-AT7698D8W3K50O8QKGTA11YIJ.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/libkern-EVD5GPE9ECPU9628OVCMEC246.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "libkern"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/include\/os.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/os-DSH1Q0WM501VFGGIIN6C9Q317.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/os-CNV2379ARMT8ZMAKSDAVG0YKZ.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "os"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/include\/os.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/os_object-BQ6BANLL0E3981CLN4SNX3OMS.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/os_object-DXH50ZYXT8CL8RSPU6S22QVHL.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "os_object"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/include\/os.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/os_workgroup-6NOCBJ27N2146DK5QYBWVUKIY.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/os_workgroup-CGE781JGPK9JPKNUHUC1V1ZW0.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "os_workgroup"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/ptrauth-4DSRV9D94UK2UMA2T94DU6Q28.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/ptrauth-6PXZIWFPM3QFTPCNH7BS722RS.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "ptrauth"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Toolchains\/XcodeDefault.xctoolchain\/usr\/lib\/clang\/17\/include\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/ptrcheck-88VSOU2I7T638EJDHKF5OSCIQ.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/ptrcheck-1IKGTOZ64I1CEOWJOON69BKB7.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "ptrcheck"
   },
   {
+    "clangModuleMapPath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/Build\/Products\/Debug\/shared_preferences_foundation\/shared_preferences_foundation.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/Build\/Intermediates.noindex\/SwiftExplicitPrecompiledModules\/shared_preferences_foundation-8UCXZC4Y7WAI7CVBJMGZ68U9K.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "shared_preferences_foundation"
+  },
+  {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/include\/simd\/module.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/simd-D9854YK5BE3Q819NKPVET0TXM.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/simd-7DBPHYJH6VCZIZR4ZTAJLBTH3.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "simd"
   },
   {
     "clangModuleMapPath" : "\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/MacOSX.platform\/Developer\/SDKs\/MacOSX.sdk\/usr\/include\/DarwinFoundation2.modulemap",
-    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/sys_types-DQYVA36ZA0VNNFD7R0RX5HCL4.pcm",
+    "clangModulePath" : "\/Users\/franzoom\/development\/offline-interface\/build\/macos\/ModuleCache.noindex\/sys_types-BDR6LQ9YRUZR0ZURI1ZD3LY2N.pcm",
     "isBridgingHeaderDependency" : false,
     "isFramework" : false,
     "moduleName" : "sys_types"

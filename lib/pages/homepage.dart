@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'informations.dart';
 import 'offices.dart';
+import 'complines.dart';
+import 'settings.dart';
 
 class HomePage extends StatefulWidget {
   final ThemeMode themeMode;
@@ -67,7 +69,7 @@ class _HomePageState extends State<HomePage> {
       case 'vepres':
         return const OfficePage(title: 'Vêpres');
       case 'complies':
-        return const OfficePage(title: 'Complies');
+        return const Complines(title: 'Complies');
       default:
         return const InformationsPage();
     }
@@ -134,29 +136,26 @@ class _HomePageState extends State<HomePage> {
         ),
         backgroundColor: isDark ? const Color(0xFF1F2937) : Colors.white,
         actions: [
-          // Icône changement de police
+          // Bouton Paramètres (nouveau)
           IconButton(
             icon: Icon(
-              widget.useSerifFont ? Icons.font_download : Icons.text_fields,
+              Icons.settings,
               color: isDark ? const Color(0xFFFBBF24) : const Color(0xFF78350F),
             ),
-            tooltip: widget.useSerifFont
-                ? 'Police sans serif'
-                : 'Police avec serif',
-            onPressed: widget.onToggleFont,
-          ),
-          // Icône mode nuit/jour
-          IconButton(
-            icon: Icon(
-              widget.themeMode == ThemeMode.light
-                  ? Icons.dark_mode_outlined
-                  : Icons.light_mode_outlined,
-              color: isDark ? const Color(0xFFFBBF24) : const Color(0xFF78350F),
-            ),
-            tooltip: widget.themeMode == ThemeMode.light
-                ? 'Mode sombre'
-                : 'Mode clair',
-            onPressed: widget.onToggleTheme,
+            tooltip: 'Paramètres',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SettingsPage(
+                    themeMode: widget.themeMode,
+                    onToggleTheme: widget.onToggleTheme,
+                    useSerifFont: widget.useSerifFont,
+                    onToggleFont: widget.onToggleFont,
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),

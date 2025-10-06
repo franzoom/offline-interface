@@ -41,7 +41,8 @@ dependencies:
 # Uncomment to use a local version of a package:
 # dependency_overrides:
   offline_liturgy:
-    path: ../offline-liturgy/  
+    path: ../offline-liturgy/
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
