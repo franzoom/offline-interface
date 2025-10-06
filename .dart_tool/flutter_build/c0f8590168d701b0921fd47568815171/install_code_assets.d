@@ -1,0 +1,1 @@
+ /Users/franzoom/development/offline-interface/.dart_tool/flutter_build/c0f8590168d701b0921fd47568815171/native_assets.json: 
