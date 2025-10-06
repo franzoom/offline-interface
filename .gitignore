@@ -7,7 +7,10 @@
 .buildlog/
 .history
 
-
+.dart_tool/
+*.xcfilelist
+*.dill
+build/macos/
 
 # Flutter repo-specific
 /bin/cache/

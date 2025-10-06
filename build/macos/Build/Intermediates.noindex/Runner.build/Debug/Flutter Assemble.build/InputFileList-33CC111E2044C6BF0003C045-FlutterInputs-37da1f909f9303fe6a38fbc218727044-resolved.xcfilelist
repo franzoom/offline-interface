@@ -34,8 +34,6 @@
 /Users/franzoom/.pub-cache/hosted/pub.dev/collection-1.19.1/lib/src/unmodifiable_wrappers.dart
 /Users/franzoom/.pub-cache/hosted/pub.dev/collection-1.19.1/lib/src/utils.dart
 /Users/franzoom/.pub-cache/hosted/pub.dev/collection-1.19.1/lib/src/wrappers.dart
-/Users/franzoom/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8/LICENSE
-/Users/franzoom/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.8/assets/CupertinoIcons.ttf
 /Users/franzoom/.pub-cache/hosted/pub.dev/fake_async-1.3.3/LICENSE
 /Users/franzoom/.pub-cache/hosted/pub.dev/ffi-2.1.4/LICENSE
 /Users/franzoom/.pub-cache/hosted/pub.dev/ffi-2.1.4/lib/ffi.dart
@@ -69,11 +67,11 @@
 /Users/franzoom/.pub-cache/hosted/pub.dev/file-7.0.1/lib/src/interface/file_system_entity.dart
 /Users/franzoom/.pub-cache/hosted/pub.dev/file-7.0.1/lib/src/interface/link.dart
 /Users/franzoom/.pub-cache/hosted/pub.dev/file-7.0.1/lib/src/io.dart
-/Users/franzoom/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0/LICENSE
+/Users/franzoom/.pub-cache/hosted/pub.dev/flutter_lints-2.0.3/LICENSE
 /Users/franzoom/.pub-cache/hosted/pub.dev/leak_tracker-11.0.2/LICENSE
 /Users/franzoom/.pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.10/LICENSE
 /Users/franzoom/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.2/LICENSE
-/Users/franzoom/.pub-cache/hosted/pub.dev/lints-5.1.1/LICENSE
+/Users/franzoom/.pub-cache/hosted/pub.dev/lints-2.1.1/LICENSE
 /Users/franzoom/.pub-cache/hosted/pub.dev/matcher-0.12.17/LICENSE
 /Users/franzoom/.pub-cache/hosted/pub.dev/material_color_utilities-0.11.1/LICENSE
 /Users/franzoom/.pub-cache/hosted/pub.dev/material_color_utilities-0.11.1/lib/blend/blend.dart
@@ -217,6 +215,14 @@
 /Users/franzoom/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0/LICENSE
 /Users/franzoom/.pub-cache/hosted/pub.dev/xdg_directories-1.1.0/lib/xdg_directories.dart
 /Users/franzoom/.pub-cache/hosted/pub.dev/yaml-3.1.3/LICENSE
+/Users/franzoom/development/offline-interface/assets/fonts/EBGaramond-Bold.ttf
+/Users/franzoom/development/offline-interface/assets/fonts/EBGaramond-BoldItalic.ttf
+/Users/franzoom/development/offline-interface/assets/fonts/EBGaramond-Italic.ttf
+/Users/franzoom/development/offline-interface/assets/fonts/EBGaramond-Regular.ttf
+/Users/franzoom/development/offline-interface/assets/fonts/Inter-Bold.ttf
+/Users/franzoom/development/offline-interface/assets/fonts/Inter-Regular.ttf
+/Users/franzoom/development/offline-interface/assets/fonts/Inter-SemiBold.ttf
+/Users/franzoom/development/offline-interface/assets/locations.json
 /Users/franzoom/development/offline-interface/lib/main.dart
 /Users/franzoom/development/offline-interface/lib/models/location.dart
 /Users/franzoom/development/offline-interface/lib/pages/complines.dart

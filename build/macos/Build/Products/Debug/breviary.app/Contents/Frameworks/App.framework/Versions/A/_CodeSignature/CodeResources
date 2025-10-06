@@ -10,23 +10,55 @@
 		</data>
 		<key>Resources/flutter_assets/AssetManifest.bin</key>
 		<data>
-		ME0cAg6cl/bTZmwXEVgMugDccUI=
+		kCzA+ln92wY2EoQ3v9IeMSsR8KU=
 		</data>
 		<key>Resources/flutter_assets/AssetManifest.json</key>
 		<data>
-		oG5/OGn+vw7vp/nu5DUDoZJ4nFc=
+		lSohxblVsXBjcujFjDcw3lO1ILc=
 		</data>
 		<key>Resources/flutter_assets/FontManifest.json</key>
 		<data>
-		vKJkVIcw+LGHFnKJGwrQwCREv68=
+		jy94saSNrHg1cPTL9tjIWYsZ3A0=
 		</data>
 		<key>Resources/flutter_assets/NOTICES.Z</key>
 		<data>
-		gEOFn5i+bqlxcXyjC+BI4fz9utA=
+		IE1aWNd8i4XOy5PYcgGxijHVCXk=
 		</data>
 		<key>Resources/flutter_assets/NativeAssetsManifest.json</key>
 		<data>
 		re4p7E8rPLLsN+wzaPN/+AVpXTY=
+		</data>
+		<key>Resources/flutter_assets/assets/fonts/EBGaramond-Bold.ttf</key>
+		<data>
+		HPBGd9hjwk3QmaW2SLXgnmWOHtM=
+		</data>
+		<key>Resources/flutter_assets/assets/fonts/EBGaramond-BoldItalic.ttf</key>
+		<data>
+		CixOeMyY0kYlvzMlplQNRIq0cW8=
+		</data>
+		<key>Resources/flutter_assets/assets/fonts/EBGaramond-Italic.ttf</key>
+		<data>
+		92ZVQLHESgcFnckZqBAv3zoVm5w=
+		</data>
+		<key>Resources/flutter_assets/assets/fonts/EBGaramond-Regular.ttf</key>
+		<data>
+		7q6fJ7sNHAsFgotG0D3Ua/RyADM=
+		</data>
+		<key>Resources/flutter_assets/assets/fonts/Inter-Bold.ttf</key>
+		<data>
+		AB7B6ppfdS0ySHacF0tvwDCrfas=
+		</data>
+		<key>Resources/flutter_assets/assets/fonts/Inter-Regular.ttf</key>
+		<data>
+		vRl2wfAZhTq2FD7xJG4lqmb9mQ4=
+		</data>
+		<key>Resources/flutter_assets/assets/fonts/Inter-SemiBold.ttf</key>
+		<data>
+		8+RKvWZh1bhh5m2yL095psRmzQA=
+		</data>
+		<key>Resources/flutter_assets/assets/locations.json</key>
+		<data>
+		D+SDqHe3lyWzIUsUoLcBaS7yuH0=
 		</data>
 		<key>Resources/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
@@ -38,11 +70,7 @@
 		</data>
 		<key>Resources/flutter_assets/kernel_blob.bin</key>
 		<data>
-		tXsj7pyqUd5o48iNYMInVtkd1sU=
-		</data>
-		<key>Resources/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
-		<data>
-		Bvk+P1ykE1PGRdktwgwDyz6AOqM=
+		OmN4y6PPbUm1M77VI3I0RvJEtzk=
 		</data>
 		<key>Resources/flutter_assets/shaders/ink_sparkle.frag</key>
 		<data>
@@ -66,28 +94,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			AK9VrT1vIYmP534P8JLRoc2lLJQbaGDpko1FyK+MCV0=
+			02nbvg8itOMkNSZ5VjXcnXN7Y7rjqwSKFwZPJhTE34w=
 			</data>
 		</dict>
 		<key>Resources/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Sps95+7JukayebvM0TLjL1LW1VXXndpKp/O8tOm9ZR8=
+			3TnhSme03MEq+ojf+YInyzfjr5sSpLXYScJP84s5mT0=
 			</data>
 		</dict>
 		<key>Resources/flutter_assets/FontManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			zX4DZFvESy3Ue3y2JvUcTsv1Whl6t3JBYotHrBZfviE=
+			DzMbi4A5n+kaK577VOE/YeSOP90KFS3X5U1FINE4CW0=
 			</data>
 		</dict>
 		<key>Resources/flutter_assets/NOTICES.Z</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3r/qL0joWXCXWNbv1TUFN2d26ex/pHFQXC7S97VPcqQ=
+			5QMdi/gBBoOBE4aMdHC9HbOkU0lqEAQDQ5X2fXOslXk=
 			</data>
 		</dict>
 		<key>Resources/flutter_assets/NativeAssetsManifest.json</key>
@@ -95,6 +123,62 @@
 			<key>hash2</key>
 			<data>
 			lUijHkoEgTXB2U+Rkyi/tirix7s8q5ZVfHlB2ql3dss=
+			</data>
+		</dict>
+		<key>Resources/flutter_assets/assets/fonts/EBGaramond-Bold.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			QrwtckfYsUJznaKb801HYsiLN559jrqH9UHHVVaz+Fw=
+			</data>
+		</dict>
+		<key>Resources/flutter_assets/assets/fonts/EBGaramond-BoldItalic.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			npVIaLFue0e6Du08tdoPyo+PMIfNSPDRuU7yjhsOVn8=
+			</data>
+		</dict>
+		<key>Resources/flutter_assets/assets/fonts/EBGaramond-Italic.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			L9HUsrNup/w6enyT+c3FHN7luiaxu/+NRcFtj2qH4iQ=
+			</data>
+		</dict>
+		<key>Resources/flutter_assets/assets/fonts/EBGaramond-Regular.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			pFpQQOGjKNBWhx1CqnDxD3yjv1xEeIe4ByBUL+7q1fI=
+			</data>
+		</dict>
+		<key>Resources/flutter_assets/assets/fonts/Inter-Bold.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			MKXEXsI6WUry7/6NO1ia0iwt7eJ0QQUKFgTQD/gv0Nw=
+			</data>
+		</dict>
+		<key>Resources/flutter_assets/assets/fonts/Inter-Regular.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Pl+QoBOLON5M9Nd5rXg5GXTqHfd2uRZIQr3Ltgzjg8U=
+			</data>
+		</dict>
+		<key>Resources/flutter_assets/assets/fonts/Inter-SemiBold.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			qLJ24luxPfo5z6zjXMkq/5p9XxuWFD8N+MZjUcz+0qQ=
+			</data>
+		</dict>
+		<key>Resources/flutter_assets/assets/locations.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			rI8vYRUNLB4Dmcbr7VBBA/v0OzIkF0O4X0vC8R8mnW8=
 			</data>
 		</dict>
 		<key>Resources/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -115,14 +199,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			RXlSgUOGYD9r7ol4GI41XXyxYx5ISjynlj+xXRBw2sQ=
-			</data>
-		</dict>
-		<key>Resources/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Z8RP6Rg7AC553ef2l34piGYcmj5KPF/OloeH79vtgjw=
+			AriPH/372iXHk/wuAi/I7qs/47bjm5gkjoqlS1ZF9bI=
 			</data>
 		</dict>
 		<key>Resources/flutter_assets/shaders/ink_sparkle.frag</key>

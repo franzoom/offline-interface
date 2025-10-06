@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'informations.dart';
 import 'offices.dart';
-import 'complines.dart';
 import 'settings.dart';
+import 'complines.dart';
 
 class HomePage extends StatefulWidget {
   final ThemeMode themeMode;
   final VoidCallback onToggleTheme;
   final bool useSerifFont;
   final VoidCallback onToggleFont;
+  final double textScale;
+  final Function(double) onTextScaleChanged;
 
   const HomePage({
     Key? key,
@@ -16,6 +18,8 @@ class HomePage extends StatefulWidget {
     required this.onToggleTheme,
     required this.useSerifFont,
     required this.onToggleFont,
+    required this.textScale,
+    required this.onTextScaleChanged,
   }) : super(key: key);
 
   @override
@@ -100,11 +104,11 @@ class _HomePageState extends State<HomePage> {
                       size: 20,
                       color: _currentPage == item.id
                           ? (isDark
-                                ? const Color(0xFFFBBF24)
-                                : const Color(0xFFD97706))
+                              ? const Color(0xFFFBBF24)
+                              : const Color(0xFFD97706))
                           : (isDark
-                                ? const Color(0xFF9CA3AF)
-                                : const Color(0xFF6B7280)),
+                              ? const Color(0xFF9CA3AF)
+                              : const Color(0xFF6B7280)),
                     ),
                     const SizedBox(width: 12),
                     Text(
@@ -115,8 +119,8 @@ class _HomePageState extends State<HomePage> {
                             : FontWeight.normal,
                         color: _currentPage == item.id
                             ? (isDark
-                                  ? const Color(0xFFFBBF24)
-                                  : const Color(0xFFD97706))
+                                ? const Color(0xFFFBBF24)
+                                : const Color(0xFFD97706))
                             : null,
                       ),
                     ),
@@ -136,7 +140,7 @@ class _HomePageState extends State<HomePage> {
         ),
         backgroundColor: isDark ? const Color(0xFF1F2937) : Colors.white,
         actions: [
-          // Bouton Paramètres (nouveau)
+          // Bouton Paramètres
           IconButton(
             icon: Icon(
               Icons.settings,
@@ -152,6 +156,8 @@ class _HomePageState extends State<HomePage> {
                     onToggleTheme: widget.onToggleTheme,
                     useSerifFont: widget.useSerifFont,
                     onToggleFont: widget.onToggleFont,
+                    textScale: widget.textScale,
+                    onTextScaleChanged: widget.onTextScaleChanged,
                   ),
                 ),
               );
@@ -183,9 +189,8 @@ class _HomePageState extends State<HomePage> {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: isDark
-                    ? const Color(0xFFFBBF24)
-                    : const Color(0xFF78350F),
+                color:
+                    isDark ? const Color(0xFFFBBF24) : const Color(0xFF78350F),
               ),
             ),
           ),
