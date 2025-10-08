@@ -73,7 +73,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Future<void> _loadLocations() async {
     try {
       final String jsonString = await rootBundle.loadString(
-        'packages/offline_liturgy/assets/locations.json',
+        'assets/locations.json',
       );
       final jsonData = json.decode(jsonString);
       _locationHierarchy = LocationHierarchy.fromJson(jsonData);
