@@ -5,7 +5,13 @@ import 'package:offline_liturgy/offline_liturgy.dart';
 
 class Complines extends StatefulWidget {
   final String title;
-  const Complines({Key? key, required this.title}) : super(key: key);
+  final DateTime selectedDate;
+
+  const Complines({
+    Key? key,
+    required this.title,
+    required this.selectedDate,
+  }) : super(key: key);
 
   @override
   State<Complines> createState() => _CompliesState();
@@ -24,28 +30,44 @@ class _CompliesState extends State<Complines>
     _loadComplinesData();
   }
 
+  @override
+  void didUpdateWidget(Complines oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Recharger les données si la date a changé
+    if (oldWidget.selectedDate != widget.selectedDate) {
+      _loadComplinesData();
+    }
+  }
+
   void _loadComplinesData() {
     // Accéder au Calendar global via CalendarService
-    final calendar = CalendarService().offlineCalendar;
+    final calendar = CalendarService().calendar;
 
-    if (calendar != null) {
+    if (calendar.calendarData.isNotEmpty) {
       print('Calendar disponible pour les Complies');
 
-      // Obtenir la date actuelle
-      final now = DateTime.now();
+      // Utiliser la date sélectionnée
       final dateString =
-          '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
+          '${widget.selectedDate.year}-${widget.selectedDate.month.toString().padLeft(2, '0')}-${widget.selectedDate.day.toString().padLeft(2, '0')}';
 
       // TODO: Récupérer la région depuis les préférences ou localisation
       final region = 'france'; // À remplacer par la vraie valeur
 
-      // Générer les données des Complies
-      _complineData =
-          getNewOfflineLiturgy('compline', dateString, region, calendar);
+      try {
+        // Générer les données des Complies
+        _complineData =
+            getNewOfflineLiturgy('compline', dateString, region, calendar);
 
-      print('Données des Complies chargées : ${_complineData?.keys}');
+        print('Données des Complies chargées : ${_complineData?.keys}');
+
+        if (mounted) {
+          setState(() {});
+        }
+      } catch (e) {
+        print('Erreur lors du chargement des Complies : $e');
+      }
     } else {
-      print('Calendar non disponible');
+      print('Calendar non disponible ou vide');
     }
   }
 
@@ -69,6 +91,10 @@ class _CompliesState extends State<Complines>
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    // Récupérer les célébrations du jour
+    final celebrations =
+        CalendarService().getSortedItemsForDay(widget.selectedDate);
 
     return Column(
       children: [
@@ -105,6 +131,10 @@ class _CompliesState extends State<Complines>
                 context,
                 children: [
                   TitreText(widget.title),
+                  if (celebrations.isNotEmpty) ...[
+                    const SizedBox(height: 8),
+                    ReferenceBibliqueText(celebrations.first.value),
+                  ],
                   const SizedBox(height: 24),
                   const SousTitreText('Introduction'),
                   const SizedBox(height: 12),

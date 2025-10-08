@@ -1,20 +1,34 @@
 import 'package:flutter/material.dart';
 import '../styles.dart';
+import '../services/calendar_service.dart';
 
 // Page Office (exemple générique)
 class OfficePage extends StatelessWidget {
   final String title;
+  final DateTime selectedDate;
 
-  const OfficePage({Key? key, required this.title}) : super(key: key);
+  const OfficePage({
+    Key? key,
+    required this.title,
+    required this.selectedDate,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // Récupérer les informations du jour depuis le Calendar
+    final dayContent = CalendarService().getDayContent(selectedDate);
+    final celebrations = CalendarService().getSortedItemsForDay(selectedDate);
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TitreText(title),
+          if (celebrations.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            ReferenceBibliqueText(celebrations.first.value),
+          ],
           const SizedBox(height: 24),
           const RubriqueText('Introduction'),
           const SizedBox(height: 12),
@@ -52,6 +66,14 @@ class OfficePage extends StatelessWidget {
           const RubriqueText('Prière finale'),
           const SizedBox(height: 12),
           const CorpsText('[La prière de conclusion sera affichée ici]'),
+          if (dayContent != null) ...[
+            const SizedBox(height: 32),
+            const SousTitreText('Informations liturgiques'),
+            const SizedBox(height: 12),
+            CorpsText('Temps liturgique : ${dayContent.liturgicalTime}'),
+            const SizedBox(height: 8),
+            CorpsText('Couleur : ${dayContent.liturgicalColor}'),
+          ],
         ],
       ),
     );

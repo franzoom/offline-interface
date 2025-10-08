@@ -72,9 +72,20 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Future<void> _loadLocations() async {
     try {
-      final String jsonString = await rootBundle.loadString(
-        'assets/locations.json',
-      );
+      // Essayer d'abord le chemin du package
+      String jsonString;
+      try {
+        jsonString = await rootBundle.loadString(
+          'packages/offline_liturgy/assets/locations.json',
+        );
+      } catch (e) {
+        // Si ça échoue, essayer le chemin de l'application
+        print('Tentative de chargement depuis assets/locations.json');
+        jsonString = await rootBundle.loadString(
+          'assets/locations.json',
+        );
+      }
+
       final jsonData = json.decode(jsonString);
       _locationHierarchy = LocationHierarchy.fromJson(jsonData);
 
@@ -82,6 +93,16 @@ class _SettingsPageState extends State<SettingsPage> {
       _buildLocationList();
     } catch (e) {
       print('Erreur lors du chargement des localisations: $e');
+      // Afficher une alerte à l'utilisateur
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Impossible de charger les localisations: $e'),
+            backgroundColor: Colors.red,
+            duration: const Duration(seconds: 5),
+          ),
+        );
+      }
     }
   }
 
@@ -222,11 +243,15 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               trailing: Switch(
                 value: widget.themeMode == ThemeMode.dark,
-                onChanged: (value) {
+                onChanged: (value) async {
+                  await _saveThemePreference(value);
                   widget.onToggleTheme();
-                  _saveThemePreference(value);
+                  // Forcer le rebuild après un court délai
+                  await Future.delayed(const Duration(milliseconds: 50));
+                  if (mounted) setState(() {});
                 },
                 activeTrackColor: const Color(0xFFFBBF24),
+                activeColor: Colors.white,
               ),
             ),
           ),
@@ -263,11 +288,14 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               trailing: Switch(
                 value: widget.useSerifFont,
-                onChanged: (value) {
+                onChanged: (value) async {
+                  await _saveFontPreference(value);
                   widget.onToggleFont();
-                  _saveFontPreference(value);
+                  await Future.delayed(const Duration(milliseconds: 50));
+                  if (mounted) setState(() {});
                 },
                 activeTrackColor: const Color(0xFFFBBF24),
+                activeColor: Colors.white,
               ),
             ),
           ),
@@ -328,6 +356,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           onChanged: (value) {
                             widget.onTextScaleChanged(value);
                             _saveTextScale(value);
+                            setState(() {});
                           },
                         ),
                       ),
@@ -401,8 +430,8 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   const SizedBox(height: 16),
                   DropdownButtonFormField<String>(
-                    key: ValueKey(_selectedLocationId),
-                    initialValue: _selectedLocationId,
+                    value: _selectedLocationId,
+                    hint: const Text('Sélectionner un emplacement...'),
                     decoration: InputDecoration(
                       labelText: 'Emplacement',
                       labelStyle: TextStyle(
@@ -411,6 +440,21 @@ class _SettingsPageState extends State<SettingsPage> {
                             : const Color(0xFF6B7280),
                       ),
                       border: const OutlineInputBorder(),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: isDark
+                              ? const Color(0xFF4B5563)
+                              : const Color(0xFFD1D5DB),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: isDark
+                              ? const Color(0xFFFBBF24)
+                              : const Color(0xFFD97706),
+                          width: 2,
+                        ),
+                      ),
                     ),
                     dropdownColor:
                         isDark ? const Color(0xFF1F2937) : Colors.white,
@@ -447,20 +491,18 @@ class _SettingsPageState extends State<SettingsPage> {
                         });
                         await _saveLocation(value);
 
-                        // calendar update with the new location
-                        final Calendar calendar =
-                            Calendar(); //calendar initialization for this year
-                        calendar.calendarData.addAll(
-                            calendarFill(calendar, DateTime.now().year, value)
-                                .calendarData);
-                        CalendarService().updateCalendar(calendar);
+                        // Mettre à jour le calendrier avec la nouvelle localisation
+                        await CalendarService().updateLocation(value);
 
                         if (!mounted) return;
 
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Localisation mise à jour'),
-                            duration: Duration(seconds: 2),
+                          SnackBar(
+                            content: const Text('Localisation mise à jour'),
+                            duration: const Duration(seconds: 2),
+                            backgroundColor: isDark
+                                ? const Color(0xFF374151)
+                                : const Color(0xFFD97706),
                           ),
                         );
                       }

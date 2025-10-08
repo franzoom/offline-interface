@@ -4,6 +4,8 @@ import 'offices.dart';
 import 'settings.dart';
 import 'complines.dart';
 import '../utils/date_utils.dart' as utils;
+import '../services/calendar_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   final ThemeMode themeMode;
@@ -33,6 +35,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String _currentPage = 'informations';
+  bool _isLoadingCalendar = false;
 
   final List<MenuItem> _menuItems = [
     MenuItem(
@@ -55,6 +58,39 @@ class _HomePageState extends State<HomePage> {
     MenuItem(id: 'complies', label: 'Complies', icon: Icons.bedtime_outlined),
   ];
 
+  @override
+  void initState() {
+    super.initState();
+    _ensureCalendarLoaded();
+  }
+
+  /// S'assure que le calendrier est chargé pour la date sélectionnée
+  Future<void> _ensureCalendarLoaded() async {
+    final prefs = await SharedPreferences.getInstance();
+    final location = prefs.getString('selected_location_id');
+
+    if (location == null) {
+      print('Aucune localisation sélectionnée');
+      return;
+    }
+
+    final year = widget.selectedDate.year;
+
+    if (!CalendarService().isYearLoaded(year)) {
+      setState(() {
+        _isLoadingCalendar = true;
+      });
+
+      await CalendarService().ensureYearLoaded(year, location);
+
+      if (mounted) {
+        setState(() {
+          _isLoadingCalendar = false;
+        });
+      }
+    }
+  }
+
   void _changePage(String pageId) {
     setState(() {
       _currentPage = pageId;
@@ -68,19 +104,21 @@ class _HomePageState extends State<HomePage> {
   Widget _getPageContent() {
     switch (_currentPage) {
       case 'informations':
-        return const InformationsPage();
+        return InformationsPage(selectedDate: widget.selectedDate);
       case 'laudes':
-        return const OfficePage(title: 'Laudes');
+        return OfficePage(title: 'Laudes', selectedDate: widget.selectedDate);
       case 'lectures':
-        return const OfficePage(title: 'Office des Lectures');
+        return OfficePage(
+            title: 'Office des Lectures', selectedDate: widget.selectedDate);
       case 'milieu':
-        return const OfficePage(title: 'Milieu du Jour');
+        return OfficePage(
+            title: 'Milieu du Jour', selectedDate: widget.selectedDate);
       case 'vepres':
-        return const OfficePage(title: 'Vêpres');
+        return OfficePage(title: 'Vêpres', selectedDate: widget.selectedDate);
       case 'complies':
-        return const Complines(title: 'Complies');
+        return Complines(title: 'Complies', selectedDate: widget.selectedDate);
       default:
-        return const InformationsPage();
+        return InformationsPage(selectedDate: widget.selectedDate);
     }
   }
 
@@ -125,6 +163,24 @@ class _HomePageState extends State<HomePage> {
 
     if (picked != null && picked != widget.selectedDate) {
       widget.onDateChanged(picked);
+
+      // Vérifier si l'année du calendrier doit être chargée
+      final prefs = await SharedPreferences.getInstance();
+      final location = prefs.getString('selected_location_id');
+
+      if (location != null && picked.year != widget.selectedDate.year) {
+        setState(() {
+          _isLoadingCalendar = true;
+        });
+
+        await CalendarService().ensureYearLoaded(picked.year, location);
+
+        if (mounted) {
+          setState(() {
+            _isLoadingCalendar = false;
+          });
+        }
+      }
     }
   }
 
@@ -256,7 +312,31 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           // Contenu de la page
-          Expanded(child: _getPageContent()),
+          Expanded(
+            child: _isLoadingCalendar
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(
+                          color: isDark
+                              ? const Color(0xFFFBBF24)
+                              : const Color(0xFFD97706),
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'Chargement du calendrier...',
+                          style: TextStyle(
+                            color: isDark
+                                ? const Color(0xFF9CA3AF)
+                                : const Color(0xFF6B7280),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : _getPageContent(),
+          ),
         ],
       ),
     );
