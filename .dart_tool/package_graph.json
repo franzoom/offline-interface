@@ -8,6 +8,8 @@
       "version": "1.0.0+1",
       "dependencies": [
         "flutter",
+        "flutter_localizations",
+        "intl",
         "offline_liturgy",
         "shared_preferences"
       ],
@@ -49,6 +51,15 @@
       ]
     },
     {
+      "name": "intl",
+      "version": "0.20.2",
+      "dependencies": [
+        "clock",
+        "meta",
+        "path"
+      ]
+    },
+    {
       "name": "shared_preferences",
       "version": "2.5.3",
       "dependencies": [
@@ -59,6 +70,15 @@
         "shared_preferences_platform_interface",
         "shared_preferences_web",
         "shared_preferences_windows"
+      ]
+    },
+    {
+      "name": "flutter_localizations",
+      "version": "0.0.0",
+      "dependencies": [
+        "flutter",
+        "intl",
+        "path"
       ]
     },
     {

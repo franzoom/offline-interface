@@ -3,6 +3,7 @@ import 'informations.dart';
 import 'offices.dart';
 import 'settings.dart';
 import 'complines.dart';
+import '../utils/date_utils.dart' as utils;
 
 class HomePage extends StatefulWidget {
   final ThemeMode themeMode;
@@ -11,6 +12,8 @@ class HomePage extends StatefulWidget {
   final VoidCallback onToggleFont;
   final double textScale;
   final Function(double) onTextScaleChanged;
+  final DateTime selectedDate;
+  final Function(DateTime) onDateChanged;
 
   const HomePage({
     Key? key,
@@ -20,6 +23,8 @@ class HomePage extends StatefulWidget {
     required this.onToggleFont,
     required this.textScale,
     required this.onTextScaleChanged,
+    required this.selectedDate,
+    required this.onDateChanged,
   }) : super(key: key);
 
   @override
@@ -79,6 +84,50 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  // Fonction pour afficher le sélecteur de date
+  Future<void> _selectDate(BuildContext context) async {
+    final isDark = widget.themeMode == ThemeMode.dark;
+
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: widget.selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+      locale: const Locale('fr', 'FR'),
+      builder: (context, child) {
+        final theme = Theme.of(context);
+        return Theme(
+          data: theme.copyWith(
+            colorScheme: isDark
+                ? ColorScheme.dark(
+                    primary: const Color(0xFFFBBF24),
+                    onPrimary: const Color(0xFF111827),
+                    surface: const Color(0xFF1F2937),
+                    onSurface: const Color(0xFFD1D5DB),
+                    background: const Color(0xFF111827),
+                    onBackground: const Color(0xFFD1D5DB),
+                  )
+                : ColorScheme.light(
+                    primary: const Color(0xFFD97706),
+                    onPrimary: Colors.white,
+                    surface: Colors.white,
+                    onSurface: const Color(0xFF374151),
+                    background: const Color(0xFFFFFBEB),
+                    onBackground: const Color(0xFF374151),
+                  ),
+            dialogBackgroundColor:
+                isDark ? const Color(0xFF1F2937) : Colors.white,
+          ),
+          child: child!,
+        );
+      },
+    );
+
+    if (picked != null && picked != widget.selectedDate) {
+      widget.onDateChanged(picked);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = widget.themeMode == ThemeMode.dark;
@@ -130,16 +179,28 @@ class _HomePageState extends State<HomePage> {
             }).toList();
           },
         ),
+        // Titre remplacé par la date formatée
         title: Text(
-          'Liturgie des Heures',
+          utils.DateUtils.formatDateFrench(widget.selectedDate),
           style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            fontFamily: 'Inter',
             color: isDark ? const Color(0xFFFBBF24) : const Color(0xFF78350F),
           ),
         ),
+        centerTitle: true,
         backgroundColor: isDark ? const Color(0xFF1F2937) : Colors.white,
         actions: [
+          // Bouton Calendrier (NOUVEAU)
+          IconButton(
+            icon: Icon(
+              Icons.calendar_today,
+              color: isDark ? const Color(0xFFFBBF24) : const Color(0xFF78350F),
+            ),
+            tooltip: 'Sélectionner une date',
+            onPressed: () => _selectDate(context),
+          ),
           // Bouton Paramètres
           IconButton(
             icon: Icon(
