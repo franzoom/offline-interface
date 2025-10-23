@@ -3,6 +3,7 @@ import 'informations.dart';
 import 'offices.dart';
 import 'settings.dart';
 import 'complines.dart';
+import 'morning.dart';
 import '../utils/date_utils.dart' as utils;
 import '../services/calendar_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -106,7 +107,7 @@ class _HomePageState extends State<HomePage> {
       case 'informations':
         return InformationsPage(selectedDate: widget.selectedDate);
       case 'laudes':
-        return OfficePage(title: 'Laudes', selectedDate: widget.selectedDate);
+        return Morning(title: 'Laudes', selectedDate: widget.selectedDate);
       case 'lectures':
         return OfficePage(
             title: 'Office des Lectures', selectedDate: widget.selectedDate);

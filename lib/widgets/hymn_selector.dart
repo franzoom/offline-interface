@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:offline_liturgy/assets/libraries/hymns_library.dart';
 import 'package:offline_liturgy/classes/hymns_class.dart';
 import '../styles.dart';
 import '../utils/html_helper.dart';
+import '../utils/liturgy_parser.dart'; // ⭐ Import du parser réutilisable
 
 /// Reusable widget to display and select hymns from a list
+/// VERSION 2 - Using LiturgyParser for consistent formatting
 class HymnSelector extends StatefulWidget {
   final String title;
   final List<String> hymnCodes;
@@ -169,49 +170,13 @@ class _HymnSelectorState extends State<HymnSelector> {
             const SizedBox(height: 16),
           ],
 
-          // Hymn content with HTML rendering
-          Html(
-            data: prepareLiturgicalHtml(_selectedHymn!.content),
-            style: {
-              "body": Style(
-                margin: Margins.zero,
-                padding: HtmlPaddings.zero,
-                fontSize: FontSize(16),
-                lineHeight: LineHeight(1.6),
-                color:
-                    isDark ? const Color(0xFFD1D5DB) : const Color(0xFF374151),
-              ),
-              "p": Style(
-                margin: Margins.only(bottom: 12),
-                lineHeight: LineHeight(1.6),
-              ),
-              "br": Style(
-                display: Display.block,
-                margin: Margins.only(bottom: 8),
-              ),
-              "i": Style(
-                fontStyle: FontStyle.italic,
-              ),
-              "em": Style(
-                fontStyle: FontStyle.italic,
-              ),
-              "b": Style(
-                fontWeight: FontWeight.bold,
-              ),
-              "strong": Style(
-                fontWeight: FontWeight.bold,
-              ),
-              "u": Style(
-                textDecoration: TextDecoration.underline,
-              ),
-              "span": Style(
-                  // Preserve inline styling
-                  ),
-              "div": Style(
-                margin: Margins.only(bottom: 8),
-              ),
-            },
-          ),
+          // Hymn content using LiturgyParser
+          // This will automatically handle:
+          // - R/ → ℟ (red)
+          // - V/ → ℣ (red)
+          // - * and + (red with non-breaking spaces)
+          // - Verse numbers if present (red, aligned left)
+          _buildHymnContent(_selectedHymn!.content, isDark),
         ] else ...[
           Text(
             'Hymne non disponible',
@@ -223,5 +188,49 @@ class _HymnSelectorState extends State<HymnSelector> {
         ],
       ],
     );
+  }
+
+  /// Build hymn content using LiturgyParser
+  ///
+  /// The parser will:
+  /// - Convert R/ to ℟ and V/ to ℣ (in red)
+  /// - Color *, + in red
+  /// - Add non-breaking spaces before * and +
+  /// - Handle verse numbers if present (rare in hymns)
+  Widget _buildHymnContent(String content, bool isDark) {
+    final preparedContent = prepareLiturgicalHtml(content);
+
+    // Try to parse with LiturgyParser first
+    final paragraphes = LiturgyParser.parseHtmlContent(preparedContent);
+
+    // If HTML parsing succeeded and found structured content
+    if (paragraphes.isNotEmpty) {
+      // Use full parser for structured content (with verse numbers)
+      return LiturgyParser.buildFromHtml(
+        htmlContent: preparedContent,
+        isDark: isDark,
+        onParseError: () => _buildFallbackContent(preparedContent, isDark),
+      );
+    } else {
+      // For hymns without verse numbers, parse by stanzas
+      return _buildStanzaContent(preparedContent, isDark);
+    }
+  }
+
+  /// Build content for hymns organized in stanzas (no verse numbers)
+  Widget _buildStanzaContent(String htmlContent, bool isDark) {
+    // Use LiturgyParser's built-in method for parsing by stanzas
+    return LiturgyParser.buildByStanzas(
+      htmlContent: htmlContent,
+      isDark: isDark,
+      fontSize: 16,
+      stanzaSpacing: 12,
+    );
+  }
+
+  /// Fallback content builder (in case of parsing error)
+  Widget _buildFallbackContent(String htmlContent, bool isDark) {
+    final cleanText = LiturgyParser.cleanHtmlTags(htmlContent);
+    return LiturgyParser.buildParsedText(cleanText, isDark);
   }
 }

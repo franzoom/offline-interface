@@ -4,27 +4,23 @@ import '../styles.dart';
 import '../services/calendar_service.dart';
 import '../widgets/hymn_selector.dart';
 import '../widgets/psalm_display.dart';
-import '../widgets/canticle_display.dart';
-import '../utils/liturgy_parser.dart';
-import '../utils/html_helper.dart';
 import 'package:offline_liturgy/offline_liturgy.dart';
-import 'package:offline_liturgy/assets/libraries/psalms_library.dart';
 
-class Complines extends StatefulWidget {
+class Morning extends StatefulWidget {
   final String title;
   final DateTime selectedDate;
 
-  const Complines({
+  const Morning({
     Key? key,
     required this.title,
     required this.selectedDate,
   }) : super(key: key);
 
   @override
-  State<Complines> createState() => _CompliesState();
+  State<Morning> createState() => _CompliesState();
 }
 
-class _CompliesState extends State<Complines>
+class _CompliesState extends State<Morning>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -45,7 +41,7 @@ class _CompliesState extends State<Complines>
   }
 
   @override
-  void didUpdateWidget(Complines oldWidget) {
+  void didUpdateWidget(Morning oldWidget) {
     super.didUpdateWidget(oldWidget);
     // Reload data if date changed
     if (oldWidget.selectedDate != widget.selectedDate) {
@@ -172,16 +168,8 @@ class _CompliesState extends State<Complines>
 
   Compline? get _mainCompline => _complineData?.values.firstOrNull;
 
-  // Helper method to get psalm title from psalm key
-  String _getPsalmTitle(String? psalmKey) {
-    if (psalmKey == null || psalmKey.isEmpty) return 'Psaume';
-    final psalm = psalms[psalmKey];
-    return psalm?.getTitle ?? 'Psaume';
-  }
-
   Widget _getReadingContent() {
     final compline = _mainCompline;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -192,57 +180,47 @@ class _CompliesState extends State<Complines>
           ReferenceBibliqueText(compline!.complineReadingRef!),
           const SizedBox(height: 12),
         ],
-        // Use LiturgyParser for reading text
-        _buildReadingText(
-          compline?.complineReading ??
-              'Soyez toujours dans la joie, priez sans relâche, rendez grâce en toute circonstance.',
-          isDark,
-        ),
+        CorpsText(compline?.complineReading ??
+            'Soyez toujours dans la joie, priez sans relâche, rendez grâce en toute circonstance.'),
         if (compline?.complineResponsory != null) ...[
           const SizedBox(height: 16),
           const RubriqueText('Répons'),
           const SizedBox(height: 8),
-          // Use LiturgyParser for responsory text (contains HTML and R/V/ characters)
-          _buildResponsoryText(compline!.complineResponsory!, isDark),
+          CorpsText(compline!.complineResponsory!),
         ],
       ],
-    );
-  }
-
-  /// Build reading text using LiturgyParser
-  Widget _buildReadingText(String content, bool isDark) {
-    // Prepare HTML content
-    final preparedContent = prepareLiturgicalHtml(content);
-
-    // Use LiturgyParser to build by stanzas (readings usually don't have verse numbers)
-    return LiturgyParser.buildByStanzas(
-      htmlContent: preparedContent,
-      isDark: isDark,
-      fontSize: 16,
-      stanzaSpacing: 12,
-    );
-  }
-
-  /// Build responsory text using LiturgyParser (handles R/, V/, and HTML)
-  Widget _buildResponsoryText(String content, bool isDark) {
-    // Prepare HTML content
-    final preparedContent = prepareLiturgicalHtml(content);
-
-    // Use LiturgyParser to build by stanzas
-    return LiturgyParser.buildByStanzas(
-      htmlContent: preparedContent,
-      isDark: isDark,
-      fontSize: 16,
-      stanzaSpacing: 12,
     );
   }
 
   Widget _getCanticleContent() {
     final compline = _mainCompline;
 
-    return CanticleDisplay(
-      canticleKey: 'NT_2',
-      antiphon: compline?.complineEvangelicAntiphon,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SousTitreText('Cantique de Syméon'),
+        const SizedBox(height: 8),
+        const ReferenceBibliqueText('Luc 2, 29-32'),
+        const SizedBox(height: 12),
+        if (compline?.complineEvangelicAntiphon != null) ...[
+          const RubriqueText('Antienne'),
+          const SizedBox(height: 8),
+          CorpsText(compline!.complineEvangelicAntiphon!),
+          const SizedBox(height: 12),
+        ],
+        const CorpsText(
+          'Maintenant, ô Maître souverain, *\n'
+          'tu peux laisser ton serviteur s\'en aller\n'
+          'en paix, selon ta parole.\n\n'
+          'Car mes yeux ont vu le salut *\n'
+          'que tu préparais à la face des peuples :\n\n'
+          'lumière qui se révèle aux nations *\n'
+          'et donne gloire à ton peuple Israël.\n\n'
+          'Gloire au Père, et au Fils, et au Saint-Esprit,\n'
+          'au Dieu qui est, qui était, et qui vient,\n'
+          'pour les siècles des siècles. Amen.',
+        ),
+      ],
     );
   }
 
@@ -265,86 +243,85 @@ class _CompliesState extends State<Complines>
         const RubriqueText('Bénédiction'),
         const SizedBox(height: 8),
         const CorpsText(
-          'Que le Seigneur nous bénisse, qu\'il nous garde de tout mal et nous conduise à la vie éternelle. Amen.',
+          'Que le Seigneur nous bénisse,\n'
+          'qu\'il nous garde de tout mal,\n'
+          'et nous conduise à la vie éternelle. Amen.',
         ),
       ],
     );
   }
 
   Widget _getMarialHymnContent() {
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SousTitreText('Hymne mariale'),
-        SizedBox(height: 12),
-        RubriqueText(
-            'À la fin des complies, on peut chanter une hymne à la Vierge Marie'),
-        SizedBox(height: 16),
-        SousTitreText('Salve Regina'),
-        SizedBox(height: 12),
-        CorpsText(
-          'Salve, Regina, mater misericordiæ,\n'
-          'vita, dulcedo, et spes nostra, salve.\n'
-          'Ad te clamamus exsules filii Hevæ,\n'
-          'Ad te suspiramus, gementes et flentes\n'
-          'in hac lacrimarum valle.\n\n'
-          'Eia, ergo, advocata nostra, illos tuos\n'
-          'misericordes oculos ad nos converte;\n'
-          'et Jesum, benedictum fructum ventris tui,\n'
-          'nobis post hoc exsilium ostende.\n'
-          'O clemens, O pia, O dulcis Virgo Maria.',
-        ),
-      ],
+    final compline = _mainCompline;
+
+    if (compline?.marialHymnRef == null || compline!.marialHymnRef!.isEmpty) {
+      return const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SousTitreText('Hymne à Marie'),
+          SizedBox(height: 12),
+          CorpsText('[Aucune hymne mariale disponible]'),
+        ],
+      );
+    }
+
+    return HymnSelector(
+      title: 'Hymne à Marie',
+      hymnCodes: compline.marialHymnRef!.cast<String>(),
     );
   }
 
   Widget _buildComplineSelector(BuildContext context, bool isDark) {
     if (_availableComplines.length <= 1) return const SizedBox.shrink();
 
-    return Column(
-      children: [
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF374151) : const Color(0xFFFED7AA),
-            border: Border(
-              bottom: BorderSide(
-                color: isDark
-                    ? const Color(0xFF4B5563)
-                    : const Color(0xFFD97706).withOpacity(0.3),
-              ),
-            ),
-          ),
-          child: DropdownButtonHideUnderline(
-            child: DropdownButton<int>(
-              value: _selectedComplineIndex,
-              isExpanded: true,
-              dropdownColor: isDark ? const Color(0xFF1F2937) : Colors.white,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color:
-                    isDark ? const Color(0xFFD1D5DB) : const Color(0xFF78350F),
-              ),
-              icon: Icon(
-                Icons.arrow_drop_down,
-                color:
-                    isDark ? const Color(0xFFFBBF24) : const Color(0xFFD97706),
-              ),
-              items: _availableComplines.asMap().entries.map((entry) {
-                final index = entry.key;
-                final complineMap = entry.value;
-                return DropdownMenuItem<int>(
-                  value: index,
-                  child: Text(_getComplineName(complineMap)),
-                );
-              }).toList(),
-              onChanged: _onComplineChanged,
-            ),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      decoration: BoxDecoration(
+        color: isDark
+            ? const Color(0xFF374151)
+            : const Color(0xFFFED7AA).withOpacity(0.3),
+        border: Border(
+          bottom: BorderSide(
+            color: isDark
+                ? const Color(0xFF4B5563)
+                : const Color(0xFFD97706).withOpacity(0.3),
+            width: 1,
           ),
         ),
-      ],
+      ),
+      child: Row(
+        children: [
+          Icon(
+            Icons.church,
+            color: isDark ? const Color(0xFFFBBF24) : const Color(0xFFD97706),
+            size: 20,
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<int>(
+                value: _selectedComplineIndex,
+                isExpanded: true,
+                dropdownColor: isDark ? const Color(0xFF1F2937) : Colors.white,
+                style: TextStyle(
+                  color: isDark
+                      ? const Color(0xFFD1D5DB)
+                      : const Color(0xFF374151),
+                  fontSize: 14,
+                ),
+                items: List.generate(
+                  _availableComplines.length,
+                  (index) => DropdownMenuItem(
+                    value: index,
+                    child: Text(_getComplineName(_availableComplines[index])),
+                  ),
+                ),
+                onChanged: _onComplineChanged,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -404,9 +381,8 @@ class _CompliesState extends State<Complines>
             tabs: [
               const Tab(text: 'Introduction'),
               const Tab(text: 'Hymne'),
-              Tab(text: _getPsalmTitle(_mainCompline?.complinePsalm1)),
-              if (hasPsalm2)
-                Tab(text: _getPsalmTitle(_mainCompline?.complinePsalm2)),
+              const Tab(text: 'Psaume 1'),
+              if (hasPsalm2) const Tab(text: 'Psaume 2'),
               const Tab(text: 'Lecture'),
               const Tab(text: 'Cantique'),
               const Tab(text: 'Oraison'),
