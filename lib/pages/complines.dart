@@ -29,7 +29,7 @@ class _CompliesState extends State<Complines>
   late TabController _tabController;
 
   // List of available complines
-  List<Map<String, ComplineDefinition>> _availableComplines = [];
+  Map<String, ComplineDefinition> _availableComplines = {};
   int _selectedComplineIndex = 0;
 
   // Current compiled compline data
@@ -62,8 +62,8 @@ class _CompliesState extends State<Complines>
     await _loadComplinesData();
 
     // Initialize TabController after having data
-    final hasPsalm2 = _hasTwoPsalms();
-    _tabController = TabController(length: hasPsalm2 ? 8 : 7, vsync: this);
+    final psalmCount = _getPsalmCount();
+    _tabController = TabController(length: 6 + psalmCount, vsync: this);
 
     setState(() {
       _isLoading = false;
@@ -130,9 +130,9 @@ class _CompliesState extends State<Complines>
         _compileCurrentCompline();
 
         // Reinitialize TabController if psalm count changed
-        final hasPsalm2 = _hasTwoPsalms();
+        final psalmCount = _getPsalmCount();
         _tabController.dispose();
-        _tabController = TabController(length: hasPsalm2 ? 8 : 7, vsync: this);
+        _tabController = TabController(length: 6 + psalmCount, vsync: this);
       });
     }
   }
@@ -162,12 +162,12 @@ class _CompliesState extends State<Complines>
         .join(' ');
   }
 
-  bool _hasTwoPsalms() {
-    if (_complineData == null) return false;
+  // Updated for new structure
+  int _getPsalmCount() {
+    if (_complineData == null) return 1;
     final mainCompline = _complineData!.values.firstOrNull;
-    if (mainCompline == null) return false;
-    return mainCompline.complinePsalm2 != null &&
-        mainCompline.complinePsalm2!.isNotEmpty;
+    if (mainCompline == null) return 1;
+    return mainCompline.psalmody?.length ?? 1;
   }
 
   Compline? get _mainCompline => _complineData?.values.firstOrNull;
@@ -188,22 +188,23 @@ class _CompliesState extends State<Complines>
       children: [
         const RubriqueText('Lecture brève'),
         const SizedBox(height: 8),
-        if (compline?.complineReadingRef != null) ...[
-          ReferenceBibliqueText(compline!.complineReadingRef!),
+        // Updated for new structure
+        if (compline?.reading?['ref'] != null) ...[
+          ReferenceBibliqueText(compline!.reading!['ref']!),
           const SizedBox(height: 12),
         ],
         // Use LiturgyParser for reading text
         _buildReadingText(
-          compline?.complineReading ??
+          compline?.reading?['content'] ??
               'Soyez toujours dans la joie, priez sans relâche, rendez grâce en toute circonstance.',
           isDark,
         ),
-        if (compline?.complineResponsory != null) ...[
+        if (compline?.responsory != null) ...[
           const SizedBox(height: 16),
           const RubriqueText('Répons'),
           const SizedBox(height: 8),
           // Use LiturgyParser for responsory text (contains HTML and R/V/ characters)
-          _buildResponsoryText(compline!.complineResponsory!, isDark),
+          _buildResponsoryText(compline!.responsory!, isDark),
         ],
       ],
     );
@@ -242,96 +243,99 @@ class _CompliesState extends State<Complines>
 
     return CanticleDisplay(
       canticleKey: 'NT_2',
-      antiphon: compline?.complineEvangelicAntiphon,
+      antiphon: compline?.evangelicAntiphon,
     );
   }
 
   Widget _getOrationContent() {
     final compline = _mainCompline;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const RubriqueText('Oraison'),
+        const SousTitreText('Oraison'),
         const SizedBox(height: 12),
-        if (compline?.complineOration != null &&
-            compline!.complineOration!.isNotEmpty) ...[
-          CorpsText(compline.complineOration!.join('\n\n')),
-          const SizedBox(height: 24),
-        ] else ...[
-          const CorpsText('[La prière de conclusion sera affichée ici]'),
-          const SizedBox(height: 24),
-        ],
-        const RubriqueText('Bénédiction'),
-        const SizedBox(height: 8),
+        // Updated for new structure
+        if (compline?.oration != null && compline!.oration!.isNotEmpty) ...[
+          // If multiple orations, join them with spacing
+          ...compline.oration!.map((orationText) => Padding(
+                padding: const EdgeInsets.only(bottom: 12.0),
+                child: CorpsText(orationText.toString()),
+              )),
+        ] else
+          const CorpsText('[Oraison en cours de chargement]'),
+        const SizedBox(height: 24),
+        const RubriqueText('Bénédiction finale'),
+        const SizedBox(height: 12),
         const CorpsText(
-          'Que le Seigneur nous bénisse, qu\'il nous garde de tout mal et nous conduise à la vie éternelle. Amen.',
+          'Que le Seigneur tout-puissant nous accorde une nuit tranquille et une mort sainte.\n'
+          'Amen.',
         ),
       ],
     );
   }
 
   Widget _getMarialHymnContent() {
+    final compline = _mainCompline;
+
+    if (compline?.marialHymnRef != null &&
+        compline!.marialHymnRef!.isNotEmpty) {
+      return HymnSelector(
+        title: 'Hymne mariale',
+        hymnCodes: compline.marialHymnRef!,
+      );
+    }
+
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SousTitreText('Hymne mariale'),
         SizedBox(height: 12),
-        RubriqueText(
-            'À la fin des complies, on peut chanter une hymne à la Vierge Marie'),
-        SizedBox(height: 16),
-        SousTitreText('Salve Regina'),
-        SizedBox(height: 12),
-        CorpsText(
-          'Salve, Regina, mater misericordiæ,\n'
-          'vita, dulcedo, et spes nostra, salve.\n'
-          'Ad te clamamus exsules filii Hevæ,\n'
-          'Ad te suspiramus, gementes et flentes\n'
-          'in hac lacrimarum valle.\n\n'
-          'Eia, ergo, advocata nostra, illos tuos\n'
-          'misericordes oculos ad nos converte;\n'
-          'et Jesum, benedictum fructum ventris tui,\n'
-          'nobis post hoc exsilium ostende.\n'
-          'O clemens, O pia, O dulcis Virgo Maria.',
-        ),
+        CorpsText('[Aucune hymne mariale disponible]'),
       ],
     );
   }
 
   Widget _buildComplineSelector(BuildContext context, bool isDark) {
-    if (_availableComplines.length <= 1) return const SizedBox.shrink();
+    if (_availableComplines.length <= 1) {
+      return const SizedBox.shrink();
+    }
 
-    return Column(
-      children: [
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF374151) : const Color(0xFFFED7AA),
-            border: Border(
-              bottom: BorderSide(
-                color: isDark
-                    ? const Color(0xFF4B5563)
-                    : const Color(0xFFD97706).withOpacity(0.3),
-              ),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      decoration: BoxDecoration(
+        color: isDark ? const Color(0xFF1F2937) : Colors.white,
+        boxShadow: [
+          BoxShadow(
+            offset: const Offset(0, 2),
+            blurRadius: 4,
+            color: Colors.black.withOpacity(0.1),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Text(
+            'Complies : ',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              color: isDark ? const Color(0xFFD1D5DB) : const Color(0xFF111827),
             ),
           ),
-          child: DropdownButtonHideUnderline(
+          const SizedBox(width: 12),
+          Expanded(
             child: DropdownButton<int>(
               value: _selectedComplineIndex,
               isExpanded: true,
-              dropdownColor: isDark ? const Color(0xFF1F2937) : Colors.white,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
+              underline: Container(
+                height: 2,
                 color:
-                    isDark ? const Color(0xFFD1D5DB) : const Color(0xFF78350F),
+                    isDark ? const Color(0xFF4B5563) : const Color(0xFFD1D5DB),
               ),
-              icon: Icon(
-                Icons.arrow_drop_down,
-                color:
-                    isDark ? const Color(0xFFFBBF24) : const Color(0xFFD97706),
-              ),
+              dropdownColor:
+                  isDark ? const Color(0xFF374151) : const Color(0xFFF3F4F6),
               items: _availableComplines.asMap().entries.map((entry) {
                 final index = entry.key;
                 final complineMap = entry.value;
@@ -343,9 +347,64 @@ class _CompliesState extends State<Complines>
               onChanged: _onComplineChanged,
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
+  }
+
+  // Build psalm tabs dynamically
+  List<Widget> _buildPsalmTabs() {
+    final tabs = <Widget>[];
+
+    if (_mainCompline?.psalmody != null) {
+      for (var psalmItem in _mainCompline!.psalmody!) {
+        final psalmKey = psalmItem['psalm'] as String?;
+        tabs.add(Tab(text: _getPsalmTitle(psalmKey)));
+      }
+    } else {
+      // Fallback if no psalmody data
+      tabs.add(const Tab(text: 'Psaume'));
+    }
+
+    return tabs;
+  }
+
+  // Build psalm content tabs dynamically
+  List<Widget> _buildPsalmContents(BuildContext context) {
+    final contents = <Widget>[];
+
+    if (_mainCompline?.psalmody != null) {
+      for (var psalmItem in _mainCompline!.psalmody!) {
+        final psalmKey = psalmItem['psalm'] as String?;
+        final antiphons = List<String>.from(psalmItem['antiphon'] ?? []);
+
+        contents.add(
+          _buildTabContent(
+            context,
+            children: [
+              if (psalmKey != null)
+                PsalmDisplay(
+                  psalmKey: psalmKey,
+                  antiphon1: antiphons.isNotEmpty ? antiphons[0] : null,
+                  antiphon2: antiphons.length > 1 ? antiphons[1] : null,
+                )
+              else
+                const CorpsText('[Psaume en cours de chargement]'),
+            ],
+          ),
+        );
+      }
+    } else {
+      // Fallback if no psalmody data
+      contents.add(
+        _buildTabContent(
+          context,
+          children: [const CorpsText('[Psaume en cours de chargement]')],
+        ),
+      );
+    }
+
+    return contents;
   }
 
   @override
@@ -381,7 +440,6 @@ class _CompliesState extends State<Complines>
       );
     }
 
-    final hasPsalm2 = _hasTwoPsalms();
     final compline = _mainCompline;
 
     return Column(
@@ -389,7 +447,7 @@ class _CompliesState extends State<Complines>
         // Compline selector (if multiple options)
         _buildComplineSelector(context, isDark),
 
-        // Tab bar
+        // Tab bar - Updated for new structure
         Container(
           color: isDark ? const Color(0xFF1F2937) : Colors.white,
           child: TabBar(
@@ -404,9 +462,7 @@ class _CompliesState extends State<Complines>
             tabs: [
               const Tab(text: 'Introduction'),
               const Tab(text: 'Hymne'),
-              Tab(text: _getPsalmTitle(_mainCompline?.complinePsalm1)),
-              if (hasPsalm2)
-                Tab(text: _getPsalmTitle(_mainCompline?.complinePsalm2)),
+              ..._buildPsalmTabs(),
               const Tab(text: 'Lecture'),
               const Tab(text: 'Cantique'),
               const Tab(text: 'Oraison'),
@@ -414,7 +470,7 @@ class _CompliesState extends State<Complines>
             ],
           ),
         ),
-        // Tab content
+        // Tab content - Updated for new structure
         Expanded(
           child: TabBarView(
             controller: _tabController,
@@ -432,7 +488,8 @@ class _CompliesState extends State<Complines>
                     const SizedBox(height: 8),
                     RubriqueText(compline!.celebrationType!),
                   ],
-                  if (compline?.complineCommentary != null) ...[
+                  // Updated for new structure
+                  if (compline?.commentary != null) ...[
                     const SizedBox(height: 12),
                     Card(
                       color: isDark
@@ -452,7 +509,7 @@ class _CompliesState extends State<Complines>
                             const SizedBox(width: 8),
                             Expanded(
                               child: Text(
-                                compline!.complineCommentary!,
+                                compline!.commentary!,
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontStyle: FontStyle.italic,
@@ -488,15 +545,15 @@ class _CompliesState extends State<Complines>
                   ),
                 ],
               ),
-              // Hymne
+              // Hymne - Updated for new structure
               _buildTabContent(
                 context,
                 children: [
-                  if (_mainCompline?.complineHymns != null &&
-                      _mainCompline!.complineHymns!.isNotEmpty)
+                  if (_mainCompline?.hymns != null &&
+                      _mainCompline!.hymns!.isNotEmpty)
                     HymnSelector(
                       title: 'Hymne',
-                      hymnCodes: _mainCompline!.complineHymns!.cast<String>(),
+                      hymnCodes: _mainCompline!.hymns!.cast<String>(),
                     )
                   else
                     const Column(
@@ -509,35 +566,8 @@ class _CompliesState extends State<Complines>
                     ),
                 ],
               ),
-              // Psaume 1
-              _buildTabContent(
-                context,
-                children: [
-                  if (_mainCompline != null)
-                    PsalmDisplay(
-                      psalmKey: _mainCompline!.complinePsalm1,
-                      antiphon1: _mainCompline!.complinePsalm1Antiphon,
-                      antiphon2: _mainCompline!.complinePsalm1Antiphon2,
-                    )
-                  else
-                    const CorpsText('[Psaume en cours de chargement]'),
-                ],
-              ),
-              // Psaume 2 (conditional)
-              if (hasPsalm2)
-                _buildTabContent(
-                  context,
-                  children: [
-                    if (_mainCompline != null)
-                      PsalmDisplay(
-                        psalmKey: _mainCompline!.complinePsalm2,
-                        antiphon1: _mainCompline!.complinePsalm2Antiphon,
-                        antiphon2: _mainCompline!.complinePsalm2Antiphon2,
-                      )
-                    else
-                      const CorpsText('[Psaume en cours de chargement]'),
-                  ],
-                ),
+              // Psalms - dynamically built
+              ..._buildPsalmContents(context),
               // Lecture
               _buildTabContent(
                 context,
@@ -553,7 +583,7 @@ class _CompliesState extends State<Complines>
                 context,
                 children: [_getOrationContent()],
               ),
-              // Hymne mariale (new tab)
+              // Hymne mariale
               _buildTabContent(
                 context,
                 children: [_getMarialHymnContent()],

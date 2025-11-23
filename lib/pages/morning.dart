@@ -4,23 +4,27 @@ import '../styles.dart';
 import '../services/calendar_service.dart';
 import '../widgets/hymn_selector.dart';
 import '../widgets/psalm_display.dart';
+import '../widgets/canticle_display.dart';
+import '../utils/liturgy_parser.dart';
+import '../utils/html_helper.dart';
 import 'package:offline_liturgy/offline_liturgy.dart';
+import 'package:offline_liturgy/assets/libraries/psalms_library.dart';
 
-class Morning extends StatefulWidget {
+class Complines extends StatefulWidget {
   final String title;
   final DateTime selectedDate;
 
-  const Morning({
+  const Complines({
     Key? key,
     required this.title,
     required this.selectedDate,
   }) : super(key: key);
 
   @override
-  State<Morning> createState() => _CompliesState();
+  State<Complines> createState() => _CompliesState();
 }
 
-class _CompliesState extends State<Morning>
+class _CompliesState extends State<Complines>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -41,7 +45,7 @@ class _CompliesState extends State<Morning>
   }
 
   @override
-  void didUpdateWidget(Morning oldWidget) {
+  void didUpdateWidget(Complines oldWidget) {
     super.didUpdateWidget(oldWidget);
     // Reload data if date changed
     if (oldWidget.selectedDate != widget.selectedDate) {
@@ -58,8 +62,8 @@ class _CompliesState extends State<Morning>
     await _loadComplinesData();
 
     // Initialize TabController after having data
-    final hasPsalm2 = _hasTwoPsalms();
-    _tabController = TabController(length: hasPsalm2 ? 8 : 7, vsync: this);
+    final psalmCount = _getPsalmCount();
+    _tabController = TabController(length: 6 + psalmCount, vsync: this);
 
     setState(() {
       _isLoading = false;
@@ -126,9 +130,9 @@ class _CompliesState extends State<Morning>
         _compileCurrentCompline();
 
         // Reinitialize TabController if psalm count changed
-        final hasPsalm2 = _hasTwoPsalms();
+        final psalmCount = _getPsalmCount();
         _tabController.dispose();
-        _tabController = TabController(length: hasPsalm2 ? 8 : 7, vsync: this);
+        _tabController = TabController(length: 6 + psalmCount, vsync: this);
       });
     }
   }
@@ -158,94 +162,115 @@ class _CompliesState extends State<Morning>
         .join(' ');
   }
 
-  bool _hasTwoPsalms() {
-    if (_complineData == null) return false;
+  // Updated for new structure
+  int _getPsalmCount() {
+    if (_complineData == null) return 1;
     final mainCompline = _complineData!.values.firstOrNull;
-    if (mainCompline == null) return false;
-    return mainCompline.complinePsalm2 != null &&
-        mainCompline.complinePsalm2!.isNotEmpty;
+    if (mainCompline == null) return 1;
+    return mainCompline.psalmody?.length ?? 1;
   }
 
   Compline? get _mainCompline => _complineData?.values.firstOrNull;
 
+  // Helper method to get psalm title from psalm key
+  String _getPsalmTitle(String? psalmKey) {
+    if (psalmKey == null || psalmKey.isEmpty) return 'Psaume';
+    final psalm = psalms[psalmKey];
+    return psalm?.getTitle ?? 'Psaume';
+  }
+
   Widget _getReadingContent() {
     final compline = _mainCompline;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const RubriqueText('Lecture brève'),
         const SizedBox(height: 8),
-        if (compline?.complineReadingRef != null) ...[
-          ReferenceBibliqueText(compline!.complineReadingRef!),
+        // Updated for new structure
+        if (compline?.reading?['ref'] != null) ...[
+          ReferenceBibliqueText(compline!.reading!['ref']!),
           const SizedBox(height: 12),
         ],
-        CorpsText(compline?.complineReading ??
-            'Soyez toujours dans la joie, priez sans relâche, rendez grâce en toute circonstance.'),
-        if (compline?.complineResponsory != null) ...[
+        // Use LiturgyParser for reading text
+        _buildReadingText(
+          compline?.reading?['content'] ??
+              'Soyez toujours dans la joie, priez sans relâche, rendez grâce en toute circonstance.',
+          isDark,
+        ),
+        if (compline?.responsory != null) ...[
           const SizedBox(height: 16),
           const RubriqueText('Répons'),
           const SizedBox(height: 8),
-          CorpsText(compline!.complineResponsory!),
+          // Use LiturgyParser for responsory text (contains HTML and R/V/ characters)
+          _buildResponsoryText(compline!.responsory!, isDark),
         ],
       ],
+    );
+  }
+
+  /// Build reading text using LiturgyParser
+  Widget _buildReadingText(String content, bool isDark) {
+    // Prepare HTML content
+    final preparedContent = prepareLiturgicalHtml(content);
+
+    // Use LiturgyParser to build by stanzas (readings usually don't have verse numbers)
+    return LiturgyParser.buildByStanzas(
+      htmlContent: preparedContent,
+      isDark: isDark,
+      fontSize: 16,
+      stanzaSpacing: 12,
+    );
+  }
+
+  /// Build responsory text using LiturgyParser (handles R/, V/, and HTML)
+  Widget _buildResponsoryText(String content, bool isDark) {
+    // Prepare HTML content
+    final preparedContent = prepareLiturgicalHtml(content);
+
+    // Use LiturgyParser to build by stanzas
+    return LiturgyParser.buildByStanzas(
+      htmlContent: preparedContent,
+      isDark: isDark,
+      fontSize: 16,
+      stanzaSpacing: 12,
     );
   }
 
   Widget _getCanticleContent() {
     final compline = _mainCompline;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SousTitreText('Cantique de Syméon'),
-        const SizedBox(height: 8),
-        const ReferenceBibliqueText('Luc 2, 29-32'),
-        const SizedBox(height: 12),
-        if (compline?.complineEvangelicAntiphon != null) ...[
-          const RubriqueText('Antienne'),
-          const SizedBox(height: 8),
-          CorpsText(compline!.complineEvangelicAntiphon!),
-          const SizedBox(height: 12),
-        ],
-        const CorpsText(
-          'Maintenant, ô Maître souverain, *\n'
-          'tu peux laisser ton serviteur s\'en aller\n'
-          'en paix, selon ta parole.\n\n'
-          'Car mes yeux ont vu le salut *\n'
-          'que tu préparais à la face des peuples :\n\n'
-          'lumière qui se révèle aux nations *\n'
-          'et donne gloire à ton peuple Israël.\n\n'
-          'Gloire au Père, et au Fils, et au Saint-Esprit,\n'
-          'au Dieu qui est, qui était, et qui vient,\n'
-          'pour les siècles des siècles. Amen.',
-        ),
-      ],
+    return CanticleDisplay(
+      canticleKey: 'NT_2',
+      antiphon: compline?.evangelicAntiphon,
     );
   }
 
   Widget _getOrationContent() {
     final compline = _mainCompline;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const RubriqueText('Oraison'),
+        const SousTitreText('Oraison'),
         const SizedBox(height: 12),
-        if (compline?.complineOration != null &&
-            compline!.complineOration!.isNotEmpty) ...[
-          CorpsText(compline.complineOration!.join('\n\n')),
-          const SizedBox(height: 24),
-        ] else ...[
-          const CorpsText('[La prière de conclusion sera affichée ici]'),
-          const SizedBox(height: 24),
-        ],
-        const RubriqueText('Bénédiction'),
-        const SizedBox(height: 8),
+        // Updated for new structure
+        if (compline?.oration != null && compline!.oration!.isNotEmpty) ...[
+          // If multiple orations, join them with spacing
+          ...compline.oration!.map((orationText) => Padding(
+                padding: const EdgeInsets.only(bottom: 12.0),
+                child: CorpsText(orationText.toString()),
+              )),
+        ] else
+          const CorpsText('[Oraison en cours de chargement]'),
+        const SizedBox(height: 24),
+        const RubriqueText('Bénédiction finale'),
+        const SizedBox(height: 12),
         const CorpsText(
-          'Que le Seigneur nous bénisse,\n'
-          'qu\'il nous garde de tout mal,\n'
-          'et nous conduise à la vie éternelle. Amen.',
+          'Que le Seigneur tout-puissant nous accorde une nuit tranquille et une mort sainte.\n'
+          'Amen.',
         ),
       ],
     );
@@ -254,75 +279,132 @@ class _CompliesState extends State<Morning>
   Widget _getMarialHymnContent() {
     final compline = _mainCompline;
 
-    if (compline?.marialHymnRef == null || compline!.marialHymnRef!.isEmpty) {
-      return const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SousTitreText('Hymne à Marie'),
-          SizedBox(height: 12),
-          CorpsText('[Aucune hymne mariale disponible]'),
-        ],
+    if (compline?.marialHymnRef != null &&
+        compline!.marialHymnRef!.isNotEmpty) {
+      return HymnSelector(
+        title: 'Hymne mariale',
+        hymnCodes: compline.marialHymnRef!,
       );
     }
 
-    return HymnSelector(
-      title: 'Hymne à Marie',
-      hymnCodes: compline.marialHymnRef!.cast<String>(),
+    return const Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SousTitreText('Hymne mariale'),
+        SizedBox(height: 12),
+        CorpsText('[Aucune hymne mariale disponible]'),
+      ],
     );
   }
 
   Widget _buildComplineSelector(BuildContext context, bool isDark) {
-    if (_availableComplines.length <= 1) return const SizedBox.shrink();
+    if (_availableComplines.length <= 1) {
+      return const SizedBox.shrink();
+    }
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       decoration: BoxDecoration(
-        color: isDark
-            ? const Color(0xFF374151)
-            : const Color(0xFFFED7AA).withOpacity(0.3),
-        border: Border(
-          bottom: BorderSide(
-            color: isDark
-                ? const Color(0xFF4B5563)
-                : const Color(0xFFD97706).withOpacity(0.3),
-            width: 1,
+        color: isDark ? const Color(0xFF1F2937) : Colors.white,
+        boxShadow: [
+          BoxShadow(
+            offset: const Offset(0, 2),
+            blurRadius: 4,
+            color: Colors.black.withOpacity(0.1),
           ),
-        ),
+        ],
       ),
       child: Row(
         children: [
-          Icon(
-            Icons.church,
-            color: isDark ? const Color(0xFFFBBF24) : const Color(0xFFD97706),
-            size: 20,
+          Text(
+            'Complies : ',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              color: isDark ? const Color(0xFFD1D5DB) : const Color(0xFF111827),
+            ),
           ),
           const SizedBox(width: 12),
           Expanded(
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<int>(
-                value: _selectedComplineIndex,
-                isExpanded: true,
-                dropdownColor: isDark ? const Color(0xFF1F2937) : Colors.white,
-                style: TextStyle(
-                  color: isDark
-                      ? const Color(0xFFD1D5DB)
-                      : const Color(0xFF374151),
-                  fontSize: 14,
-                ),
-                items: List.generate(
-                  _availableComplines.length,
-                  (index) => DropdownMenuItem(
-                    value: index,
-                    child: Text(_getComplineName(_availableComplines[index])),
-                  ),
-                ),
-                onChanged: _onComplineChanged,
+            child: DropdownButton<int>(
+              value: _selectedComplineIndex,
+              isExpanded: true,
+              underline: Container(
+                height: 2,
+                color:
+                    isDark ? const Color(0xFF4B5563) : const Color(0xFFD1D5DB),
               ),
+              dropdownColor:
+                  isDark ? const Color(0xFF374151) : const Color(0xFFF3F4F6),
+              items: _availableComplines.asMap().entries.map((entry) {
+                final index = entry.key;
+                final complineMap = entry.value;
+                return DropdownMenuItem<int>(
+                  value: index,
+                  child: Text(_getComplineName(complineMap)),
+                );
+              }).toList(),
+              onChanged: _onComplineChanged,
             ),
           ),
         ],
       ),
     );
+  }
+
+  // Build psalm tabs dynamically
+  List<Widget> _buildPsalmTabs() {
+    final tabs = <Widget>[];
+
+    if (_mainCompline?.psalmody != null) {
+      for (var psalmItem in _mainCompline!.psalmody!) {
+        final psalmKey = psalmItem['psalm'] as String?;
+        tabs.add(Tab(text: _getPsalmTitle(psalmKey)));
+      }
+    } else {
+      // Fallback if no psalmody data
+      tabs.add(const Tab(text: 'Psaume'));
+    }
+
+    return tabs;
+  }
+
+  // Build psalm content tabs dynamically
+  List<Widget> _buildPsalmContents(BuildContext context) {
+    final contents = <Widget>[];
+
+    if (_mainCompline?.psalmody != null) {
+      for (var psalmItem in _mainCompline!.psalmody!) {
+        final psalmKey = psalmItem['psalm'] as String?;
+        final antiphons = List<String>.from(psalmItem['antiphon'] ?? []);
+
+        contents.add(
+          _buildTabContent(
+            context,
+            children: [
+              if (psalmKey != null)
+                PsalmDisplay(
+                  psalmKey: psalmKey,
+                  antiphon1: antiphons.isNotEmpty ? antiphons[0] : null,
+                  antiphon2: antiphons.length > 1 ? antiphons[1] : null,
+                )
+              else
+                const CorpsText('[Psaume en cours de chargement]'),
+            ],
+          ),
+        );
+      }
+    } else {
+      // Fallback if no psalmody data
+      contents.add(
+        _buildTabContent(
+          context,
+          children: [const CorpsText('[Psaume en cours de chargement]')],
+        ),
+      );
+    }
+
+    return contents;
   }
 
   @override
@@ -358,7 +440,6 @@ class _CompliesState extends State<Morning>
       );
     }
 
-    final hasPsalm2 = _hasTwoPsalms();
     final compline = _mainCompline;
 
     return Column(
@@ -366,7 +447,7 @@ class _CompliesState extends State<Morning>
         // Compline selector (if multiple options)
         _buildComplineSelector(context, isDark),
 
-        // Tab bar
+        // Tab bar - Updated for new structure
         Container(
           color: isDark ? const Color(0xFF1F2937) : Colors.white,
           child: TabBar(
@@ -381,8 +462,7 @@ class _CompliesState extends State<Morning>
             tabs: [
               const Tab(text: 'Introduction'),
               const Tab(text: 'Hymne'),
-              const Tab(text: 'Psaume 1'),
-              if (hasPsalm2) const Tab(text: 'Psaume 2'),
+              ..._buildPsalmTabs(),
               const Tab(text: 'Lecture'),
               const Tab(text: 'Cantique'),
               const Tab(text: 'Oraison'),
@@ -390,7 +470,7 @@ class _CompliesState extends State<Morning>
             ],
           ),
         ),
-        // Tab content
+        // Tab content - Updated for new structure
         Expanded(
           child: TabBarView(
             controller: _tabController,
@@ -408,7 +488,8 @@ class _CompliesState extends State<Morning>
                     const SizedBox(height: 8),
                     RubriqueText(compline!.celebrationType!),
                   ],
-                  if (compline?.complineCommentary != null) ...[
+                  // Updated for new structure
+                  if (compline?.commentary != null) ...[
                     const SizedBox(height: 12),
                     Card(
                       color: isDark
@@ -428,7 +509,7 @@ class _CompliesState extends State<Morning>
                             const SizedBox(width: 8),
                             Expanded(
                               child: Text(
-                                compline!.complineCommentary!,
+                                compline!.commentary!,
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontStyle: FontStyle.italic,
@@ -464,15 +545,15 @@ class _CompliesState extends State<Morning>
                   ),
                 ],
               ),
-              // Hymne
+              // Hymne - Updated for new structure
               _buildTabContent(
                 context,
                 children: [
-                  if (_mainCompline?.complineHymns != null &&
-                      _mainCompline!.complineHymns!.isNotEmpty)
+                  if (_mainCompline?.hymns != null &&
+                      _mainCompline!.hymns!.isNotEmpty)
                     HymnSelector(
                       title: 'Hymne',
-                      hymnCodes: _mainCompline!.complineHymns!.cast<String>(),
+                      hymnCodes: _mainCompline!.hymns!.cast<String>(),
                     )
                   else
                     const Column(
@@ -485,35 +566,8 @@ class _CompliesState extends State<Morning>
                     ),
                 ],
               ),
-              // Psaume 1
-              _buildTabContent(
-                context,
-                children: [
-                  if (_mainCompline != null)
-                    PsalmDisplay(
-                      psalmKey: _mainCompline!.complinePsalm1,
-                      antiphon1: _mainCompline!.complinePsalm1Antiphon,
-                      antiphon2: _mainCompline!.complinePsalm1Antiphon2,
-                    )
-                  else
-                    const CorpsText('[Psaume en cours de chargement]'),
-                ],
-              ),
-              // Psaume 2 (conditional)
-              if (hasPsalm2)
-                _buildTabContent(
-                  context,
-                  children: [
-                    if (_mainCompline != null)
-                      PsalmDisplay(
-                        psalmKey: _mainCompline!.complinePsalm2,
-                        antiphon1: _mainCompline!.complinePsalm2Antiphon,
-                        antiphon2: _mainCompline!.complinePsalm2Antiphon2,
-                      )
-                    else
-                      const CorpsText('[Psaume en cours de chargement]'),
-                  ],
-                ),
+              // Psalms - dynamically built
+              ..._buildPsalmContents(context),
               // Lecture
               _buildTabContent(
                 context,
@@ -529,7 +583,7 @@ class _CompliesState extends State<Morning>
                 context,
                 children: [_getOrationContent()],
               ),
-              // Hymne mariale (new tab)
+              // Hymne mariale
               _buildTabContent(
                 context,
                 children: [_getMarialHymnContent()],
